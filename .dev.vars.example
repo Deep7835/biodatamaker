@@ -1,0 +1,5 @@
+# Copy to .dev.vars for `npm run dev:full`. Use Razorpay TEST keys locally (Dashboard → Test mode → API Keys).
+RAZORPAY_KEY_ID=rzp_test_xxxxxxxxxxxxxx
+RAZORPAY_KEY_SECRET=xxxxxxxxxxxxxxxxxxxxxxxx
+# Any long random string; signs the unlock tokens. Generate: openssl rand -hex 32
+UNLOCK_SECRET=change-me
