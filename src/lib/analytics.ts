@@ -10,7 +10,8 @@ export const ANALYTICS = {
   /** Microsoft Clarity project ID (heatmaps + session recordings; biodata content is masked). */
   clarityId: process.env.NEXT_PUBLIC_CLARITY_ID ?? "",
   /** Google Search Console HTML-tag verification token. */
-  googleVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  // Public by design (it's printed in the page <head>), so it lives in code and every build/deploy includes it.
+  googleVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "_yA_7dYFVtOmA8E2NOD_TRbuhWczpcHqmwoQmQPYPqs",
   /** Bing Webmaster Tools msvalidate.01 token. */
   bingVerification: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ?? "",
 };
