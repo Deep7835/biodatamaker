@@ -1,9 +1,10 @@
+import { SITE } from "@/lib/i18n";
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { fontVars } from "@/lib/fonts";
 
-export const metadata: Metadata = { title: "Page not found – BiodataSathi", robots: { index: false } };
+export const metadata: Metadata = { title: `Page not found – ${SITE.name}`, robots: { index: false } };
 
 export default function GlobalNotFound() {
   return (

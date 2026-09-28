@@ -1,5 +1,7 @@
 "use client";
 
+import { SITE } from "./i18n";
+
 import type { Biodata } from "./biodata";
 import { toDevanagariDigits } from "./i18n";
 
@@ -38,7 +40,7 @@ export async function exportPdf(node: HTMLElement, data: Biodata) {
   const [img, { jsPDF }] = await Promise.all([renderJpeg(node), import("jspdf")]);
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4", compress: true });
   pdf.addImage(img, "JPEG", 0, 0, 210, 297, undefined, "FAST");
-  pdf.setProperties({ title: `${fileBase(data)}`, creator: "BiodataSathi" });
+  pdf.setProperties({ title: `${fileBase(data)}`, creator: SITE.name });
   pdf.save(`${fileBase(data)}.pdf`);
 }
 

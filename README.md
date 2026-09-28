@@ -1,4 +1,4 @@
-# BiodataSathi
+# Marathi Biodata Make
 
 Free marriage biodata maker in English, हिंदी and मराठी. Next.js static export, deployed on Cloudflare.
 

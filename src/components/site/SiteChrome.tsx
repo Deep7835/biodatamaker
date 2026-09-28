@@ -16,8 +16,8 @@ export function Logo({ lang }: { lang: Lang }) {
         <circle cx="16" cy="12" r="3.2" fill="#E7C58F" />
         <path d="M10.5 19h11M10.5 22.5h8" stroke="#FBF8F3" strokeWidth="1.6" strokeLinecap="round" />
       </svg>
-      <span className="font-display text-lg leading-none tracking-tight text-ink sm:text-xl">
-        Biodata<span className="text-maroon">Sathi</span>
+      <span className="whitespace-nowrap font-display text-base leading-none tracking-tight text-ink min-[400px]:text-lg sm:text-xl">
+        Marathi Biodata <span className="text-maroon">Make</span>
       </span>
     </Link>
   );

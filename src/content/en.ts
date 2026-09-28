@@ -27,7 +27,7 @@ A marriage biodata is a one-page introduction that families exchange when lookin
 
 You can [start your biodata now](/create/) and see the design update as you type. Nothing is uploaded, and your progress is saved in your browser, so you can close the tab and come back later on the same phone or computer.
 
-## Why families use BiodataSathi
+## Why families use Marathi Biodata Make
 
 - **Truly free.** The 19 free templates download without a watermark and without a paywall at the end.
 - **Private by design.** Your details stay in your browser. We don't upload them, and there is no login.
@@ -38,7 +38,7 @@ You can [start your biodata now](/create/) and see the design update as you type
 
 ## Choose from 35 biodata templates
 
-There are 19 free designs and 16 premium ones. Premium designs (toran, jharokha, paisley, rangoli and royal dark styles) are a one-time ₹49 unlock on your device, or you can download them free with a small "Made with biodatasathi.com" line at the bottom. Here are a few favourites:
+There are 19 free designs and 16 premium ones. Premium designs (toran, jharokha, paisley, rangoli and royal dark styles) are a one-time ₹49 unlock on your device, or you can download them free with a small "Made with marathibiodatamake.in" line at the bottom. Here are a few favourites:
 
 ![Kesari Classic: saffron double border with Ganesha symbol](/templates/en/marriage-biodata-format-kesari-classic.webp) ![Rose Petal: soft rose design with a round photo frame](/templates/en/marriage-biodata-format-rose-petal.webp) ![Royal Blue: modern sidebar layout for professionals](/templates/en/marriage-biodata-format-royal-blue-sidebar.webp)
 
@@ -81,7 +81,7 @@ You get all three from the same biodata, free. The Word file keeps your text, ph
 
 ## Marathi and Hindi biodata
 
-Many families prefer a biodata in their mother tongue, especially when it goes to grandparents or relatives in the native place. BiodataSathi has complete Marathi and Hindi versions with the labels families actually use, such as रास, नक्षत्र, गण, नाडी, देवक, कुलदैवत and मामा (आजोळ).
+Many families prefer a biodata in their mother tongue, especially when it goes to grandparents or relatives in the native place. Marathi Biodata Make has complete Marathi and Hindi versions with the labels families actually use, such as रास, नक्षत्र, गण, नाडी, देवक, कुलदैवत and मामा (आजोळ).
 
 - [Marathi biodata maker (मराठी बायोडाटा)](/marathi/) with Marathi field names and "।। श्री गणेशाय नमः ।।"
 - [Hindi biodata maker (हिंदी बायोडाटा)](/hindi/) for a shadi ka biodata in Hindi
@@ -241,7 +241,7 @@ Your biodata is saved in your browser as you type, so you can come back and chan
 
 ## PDF or Word: which format should you use?
 
-Use **PDF** when you want the design to look exactly the same on every phone and printer. That makes it the best choice for sharing with families and matrimony bureaus. Use **Word (.docx)** if a relative wants to type changes later. Use **JPG** for WhatsApp status and quick forwards. BiodataSathi gives you all three from the same biodata.
+Use **PDF** when you want the design to look exactly the same on every phone and printer. That makes it the best choice for sharing with families and matrimony bureaus. Use **Word (.docx)** if a relative wants to type changes later. Use **JPG** for WhatsApp status and quick forwards. Marathi Biodata Make gives you all three from the same biodata.
 
 ## Tips for a biodata that gets responses
 
@@ -338,7 +338,7 @@ For a Muslim bride, choose the **Muslim** preset in the Design tab. It adds "Bis
 
 ## A free Canva alternative for biodata
 
-Many people search for a "biodata for girl Canva" template. Canva is great for general design, but you start from a generic layout and type every label yourself. BiodataSathi starts with biodata fields already in place, has dropdowns for rashi, nakshatra and height, types Hindi and Marathi in Devanagari, and always fits one A4 page. The free templates are free to download with no watermark.
+Many people search for a "biodata for girl Canva" template. Canva is great for general design, but you start from a generic layout and type every label yourself. Marathi Biodata Make starts with biodata fields already in place, has dropdowns for rashi, nakshatra and height, types Hindi and Marathi in Devanagari, and always fits one A4 page. The free templates are free to download with no watermark.
 
 ## Make the biodata in five minutes
 
@@ -606,7 +606,7 @@ Write in the language the other family reads most comfortably. English suits mos
 
 ## Keep it on one page
 
-A single A4 page is the norm. If you have more details, drop optional fields or use shorter wording. The BiodataSathi templates also reduce the text size automatically so everything fits. See the complete [marriage biodata format](/marriage-biodata-format/) for the section order, then [fill in your biodata online](/create/).
+A single A4 page is the norm. If you have more details, drop optional fields or use shorter wording. The Marathi Biodata Make templates also reduce the text size automatically so everything fits. See the complete [marriage biodata format](/marriage-biodata-format/) for the section order, then [fill in your biodata online](/create/).
 `,
     faqs: [
       { q: "What is the most important part of a biodata?", a: "Personal details (education and occupation) and family background are read first. Horoscope details matter mainly to families who match kundali." },
@@ -684,7 +684,7 @@ The Word samples are simple by design. If you want borders, a Ganesha symbol, a 
 
 ## Premium designs
 
-These use festive borders and two-column layouts. They are a one-time ₹49 unlock on your device, or free with a small "Made with biodatasathi.com" line at the bottom.
+These use festive borders and two-column layouts. They are a one-time ₹49 unlock on your device, or free with a small "Made with marathibiodatamake.in" line at the bottom.
 
 ![Marigold Toran premium biodata with garland top](/templates/en/marriage-biodata-format-marigold-toran.webp) ![Champagne Duo premium two-column biodata](/templates/en/marriage-biodata-format-champagne-duo.webp) ![Wine Royal premium dark biodata with gold](/templates/en/marriage-biodata-format-wine-royal.webp)
 

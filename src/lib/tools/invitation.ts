@@ -1,7 +1,7 @@
 "use client";
 
 import type { Photo, SymbolId } from "@/lib/biodata";
-import type { Lang } from "@/lib/i18n";
+import { SITE, type Lang } from "@/lib/i18n";
 import { PALETTES, type FontPair, type Frame, type Palette, type PhotoShape } from "@/lib/templates";
 
 /** Card canvas: same 794×1123 (A-series ratio) as the biodata page, so A4 and A5 prints both fit. */
@@ -329,7 +329,7 @@ export async function exportInvitePdf(node: HTMLElement, inv: Invitation) {
   const [img, { jsPDF }] = await Promise.all([renderJpeg(node, 3), import("jspdf")]);
   const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a5", compress: true });
   pdf.addImage(img, "JPEG", 0, 0, 148, 210, undefined, "FAST");
-  pdf.setProperties({ title: inviteFileBase(inv), creator: "BiodataSathi" });
+  pdf.setProperties({ title: inviteFileBase(inv), creator: SITE.name });
   pdf.save(`${inviteFileBase(inv)}.pdf`);
 }
 

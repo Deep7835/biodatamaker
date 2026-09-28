@@ -1,9 +1,9 @@
 export const SITE = {
-  name: "BiodataSathi",
-  url: "https://biodatasathi.com",
+  name: "Marathi Biodata Make",
+  url: "https://marathibiodatamake.in",
   // Shown on the Contact / policy pages. Razorpay checks these match your KYC details before activating live payments.
-  contactEmail: "support@biodatasathi.com",
-  operator: "BiodataSathi", // TODO: your legal/business name as registered with Razorpay
+  contactEmail: "support@marathibiodatamake.in",
+  operator: "Marathi Biodata Make", // TODO: your legal/business name as registered with Razorpay
   address: "", // TODO: business address (required by Razorpay); hidden while empty
 };
 

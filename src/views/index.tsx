@@ -96,9 +96,9 @@ export function SlugView({ lang, slug }: { lang: Lang; slug: string }) {
 /* ---------- Editor ---------- */
 
 const CREATE = {
-  en: { title: "Create Marriage Biodata Online – Free Editor | BiodataSathi", description: "Fill in your details, choose from 35 templates and download your marriage biodata as PDF, JPG or Word. Free, no login, no watermark.", h1: "Create your marriage biodata" },
-  hi: { title: "ऑनलाइन शादी का बायोडाटा बनाएं – मुफ़्त एडिटर | BiodataSathi", description: "जानकारी भरें, 35 टेम्पलेट में से चुनें और शादी का बायोडाटा PDF, JPG या Word में डाउनलोड करें। मुफ़्त, बिना लॉगिन।", h1: "अपना शादी का बायोडाटा बनाएँ" },
-  mr: { title: "ऑनलाईन मराठी बायोडाटा बनवा – मोफत एडिटर | BiodataSathi", description: "माहिती भरा, 35 टेम्पलेट्समधून निवडा आणि लग्नाचा बायोडाटा PDF, JPG किंवा Word मध्ये डाउनलोड करा. मोफत, लॉगिन नाही.", h1: "तुमचा लग्नाचा बायोडाटा बनवा" },
+  en: { title: "Create Marriage Biodata Online – Free Editor | Marathi Biodata Make", description: "Fill in your details, choose from 35 templates and download your marriage biodata as PDF, JPG or Word. Free, no login, no watermark.", h1: "Create your marriage biodata" },
+  hi: { title: "ऑनलाइन शादी का बायोडाटा बनाएं – मुफ़्त एडिटर | Marathi Biodata Make", description: "जानकारी भरें, 35 टेम्पलेट में से चुनें और शादी का बायोडाटा PDF, JPG या Word में डाउनलोड करें। मुफ़्त, बिना लॉगिन।", h1: "अपना शादी का बायोडाटा बनाएँ" },
+  mr: { title: "ऑनलाईन मराठी बायोडाटा बनवा – मोफत एडिटर | Marathi Biodata Make", description: "माहिती भरा, 35 टेम्पलेट्समधून निवडा आणि लग्नाचा बायोडाटा PDF, JPG किंवा Word मध्ये डाउनलोड करा. मोफत, लॉगिन नाही.", h1: "तुमचा लग्नाचा बायोडाटा बनवा" },
 };
 
 export const createMeta = (lang: Lang) => meta(lang, CREATE[lang].title, CREATE[lang].description, topicAlternates("create", lang, SITE.url), true);

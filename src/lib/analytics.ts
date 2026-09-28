@@ -1,3 +1,4 @@
+import { SITE } from "./i18n";
 /**
  * Analytics & search-engine verification, all optional and switched on by env vars at build time
  * (see .env.example and docs/SETUP-TRACKING.md). Nothing loads unless its ID is set.
@@ -5,8 +6,8 @@
 export const ANALYTICS = {
   /** Cloudflare Web Analytics beacon token (cookieless; recommended). */
   cloudflareToken: process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN ?? "",
-  /** Google Analytics 4 measurement ID, e.g. G-XXXXXXX. */
-  gaId: process.env.NEXT_PUBLIC_GA_ID ?? "",
+  /** Google Analytics 4 measurement ID (public, like the verification token below). */
+  gaId: process.env.NEXT_PUBLIC_GA_ID || "G-YEKN1NH16E",
   /** Microsoft Clarity project ID (heatmaps + session recordings; biodata content is masked). */
   clarityId: process.env.NEXT_PUBLIC_CLARITY_ID ?? "",
   /** Google Search Console HTML-tag verification token. */
@@ -49,7 +50,7 @@ export function trackEvent(name: string, params: Record<string, string | number>
 
 /** Builds a campaign link, e.g. utmLink("/marathi/", "whatsapp", "group", "diwali-2026"). */
 export function utmLink(path: string, source: string, medium: string, campaign: string) {
-  const u = new URL(path, "https://biodatasathi.com");
+  const u = new URL(path, SITE.url);
   u.searchParams.set("utm_source", source);
   u.searchParams.set("utm_medium", medium);
   u.searchParams.set("utm_campaign", campaign);

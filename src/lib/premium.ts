@@ -1,5 +1,7 @@
 "use client";
 
+import { SITE } from "./i18n";
+
 /**
  * Premium unlock (₹49 one-time, all premium templates on this device).
  * The Worker in /worker creates the order and verifies Razorpay's signature;
@@ -77,7 +79,7 @@ export async function buyPremium(opts: { description: string; color: string }): 
       order_id: order.orderId,
       amount: order.amount,
       currency: order.currency,
-      name: "BiodataSathi",
+      name: SITE.name,
       description: opts.description,
       theme: { color: opts.color },
       handler: resolve,
