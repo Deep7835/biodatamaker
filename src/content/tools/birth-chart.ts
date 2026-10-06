@@ -7,7 +7,7 @@ export const BIRTH_CHART: PageContent[] = [
     lang: "en",
     topic: "birthChart",
     slug: "rashi-nakshatra-calculator",
-    title: "Rashi & Nakshatra Calculator by Date of Birth – Free",
+    title: "Rashi & Nakshatra Finder by Date of Birth – Free Calculator",
     description:
       "Find your rashi, nakshatra, charan, gan, nadi and lagna from date, time and place of birth (Lahiri ayanamsa), then fill your biodata kundali chart in one tap.",
     h1: "Rashi & Nakshatra Calculator: Find Rashi, Nakshatra and Lagna by Birth Date",
@@ -189,7 +189,7 @@ Press **Use in my biodata** and the tool writes rashi, nakshatra, charan, gan an
     lang: "mr",
     topic: "birthChart",
     slug: "rashi-nakshatra-shodha",
-    title: "रास व नक्षत्र शोधा – जन्म तारखेवरून रास, नक्षत्र, लग्न",
+    title: "रास व नक्षत्र शोधा – जन्म तारखेवरून रास, नक्षत्र, गण, नाडी, लग्न (मोफत)",
     description:
       "जन्म तारीख, वेळ आणि ठिकाणावरून तुमची रास, नक्षत्र, चरण, गण, नाडी आणि लग्न शोधा (लाहिरी अयनांश). कुंडली एका क्लिकमध्ये लग्नाच्या बायोडाटामध्ये भरा. मोफत.",
     h1: "रास व नक्षत्र शोधा: जन्म तारीख आणि वेळेवरून रास, नक्षत्र, लग्न",
@@ -261,6 +261,10 @@ Press **Use in my biodata** and the tool writes rashi, nakshatra, charan, gan an
         a: "रास म्हणजे जन्माच्या वेळी चंद्र ज्या राशीत होता ती. जन्म तारीख, वेळ आणि ठिकाण भरले की साधन चंद्राची निरयन स्थिती काढून रास सांगते.",
       },
       {
+        q: "लग्न रास म्हणजे काय?",
+        a: "लग्न रास म्हणजे जन्माच्या क्षणी पूर्व क्षितिजावर उगवत असलेली रास (जन्मलग्न). ती चंद्र रासपेक्षा वेगळी असते आणि साधारण दर दोन तासांनी बदलते, म्हणून ती काढण्यासाठी अचूक जन्म वेळ लागते. वरील साधन जन्म वेळ व ठिकाण भरल्यावर लग्न रासही दाखवते. लग्नाच्या बायोडाटात मात्र 'रास' म्हणून चंद्र रास लिहिली जाते.",
+      },
+      {
         q: "जन्म वेळ माहीत नसताना रास कळू शकते का?",
         a: "हो, बहुतेक वेळा. 'जन्म वेळ माहीत नाही' निवडल्यावर आम्ही दुपारी 12 ची गणना करतो. चंद्र एका राशीत सुमारे सव्वा दोन दिवस असतो; त्या दिवशी रास बदलली असेल तर साधन बदलाची वेळ सांगते.",
       },
@@ -273,7 +277,7 @@ Press **Use in my biodata** and the tool writes rashi, nakshatra, charan, gan an
         a: "बहुतेक वेळा जन्म वेळ, टाइम झोन किंवा अयनांश वेगळे असतात. आम्ही लाहिरी अयनांश आणि मध्यम राहू वापरतो. सीमेजवळ काही मिनिटांचा फरकही निकाल बदलतो, म्हणून कौटुंबिक ज्योतिषांकडून खात्री करा.",
       },
     ],
-    updated,
+    updated: "2026-10-06",
     tool: "birthChart",
   },
 ];

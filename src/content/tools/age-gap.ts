@@ -7,9 +7,9 @@ export const AGE_GAP: PageContent[] = [
     lang: "en",
     topic: "ageGap",
     slug: "age-gap-calculator",
-    title: "Age Gap Calculator for Marriage – Bride & Groom Age Difference",
+    title: "Marriage Age Calculator by Date of Birth – Bride & Groom Age Gap",
     description:
-      "Find the exact age difference between bride and groom in years, months and days, or get age from a date of birth to write in your biodata. Free and private.",
+      "Enter the dates of birth to get each person's exact age and the bride-groom age gap in years, months and days, plus the legal marriage age check. Free and private.",
     h1: "Age Gap Calculator for Marriage",
     lead: "Enter the bride's and groom's dates of birth to see each person's age and the exact gap between them. Or switch to single mode to work out age from a date of birth for your biodata.",
     sample: {},
@@ -81,7 +81,7 @@ Browse all [biodata tools](/biodata-tools/) for more free helpers.
     lang: "hi",
     topic: "ageGap",
     slug: "age-gap-calculator",
-    title: "उम्र का अंतर कैलकुलेटर – वर-वधू की उम्र में फ़र्क (फ्री)",
+    title: "शादी की उम्र कैलकुलेटर – जन्म तिथि से उम्र और वर-वधू का अंतर (फ्री)",
     description:
       "वर और वधू की उम्र में सटीक अंतर साल, महीने और दिन में जानें, या जन्म तिथि से उम्र निकालकर बायोडाटा में लिखें। मुफ़्त, तेज़ और पूरी तरह निजी कैलकुलेटर।",
     h1: "उम्र का अंतर कैलकुलेटर (शादी के लिए)",

@@ -7,7 +7,7 @@ export const MUHURAT: PageContent[] = [
     lang: "en",
     topic: "muhurat",
     slug: "vivah-muhurat-2026-2027",
-    title: "Vivah Muhurat 2026–2027 – Marriage Dates List (Hindu Calendar)",
+    title: "Vivah Muhurat 2026–2027 – Nov & Dec 2026 Marriage Dates, Full List",
     description:
       "Vivah muhurat dates from Nov 2026 to Dec 2027, month by month, with nakshatra and tithi. Checked across several panchangs, with sources and no-muhurat periods.",
     h1: "Vivah Muhurat 2026–2027: Hindu Marriage Dates, Month by Month",
@@ -86,7 +86,7 @@ Families usually exchange biodata months before the wedding season. [Make your b
     lang: "hi",
     topic: "muhurat",
     slug: "vivah-muhurat-2026-2027",
-    title: "विवाह मुहूर्त 2026-2027 – शादी की शुभ तारीखें",
+    title: "विवाह मुहूर्त 2026-2027 – नवंबर, दिसंबर 2026 की शादी की तारीखें (पूरी लिस्ट)",
     description:
       "नवंबर 2026 से दिसंबर 2027 तक के विवाह मुहूर्त महीनेवार, नक्षत्र और तिथि के साथ। कई पंचांगों से मिलाकर, स्रोत और वर्जित काल सहित। समय पुरोहित से पक्का करें।",
     h1: "विवाह मुहूर्त 2026-2027: शादी की शुभ तारीखें महीनेवार",

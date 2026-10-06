@@ -916,13 +916,13 @@ For the full section order, see the [marriage biodata format](/marriage-biodata-
     lang: "en",
     topic: "jain",
     slug: "jain-marriage-biodata",
-    title: "Jain Marriage Biodata Format – Jai Jinendra, Free Maker",
+    title: "Jain Biodata Format for Marriage – Girl & Boy Samples, Free PDF & Word",
     description:
-      "Create a Jain marriage biodata with a Jai Jinendra header, Jain symbol, Digambar or Shwetambar, gotra and Jain food. Free templates, PDF and Word download.",
+      "Jain bio data format for marriage with filled samples for a girl and a boy: Jai Jinendra header, sect, gotra, community and Jain food. Make it free, download PDF or Word.",
     h1: "Jain Marriage Biodata Format",
     lead: "A Jain biodata with a Jai Jinendra header, the Jain symbol and the details Jain families look for, from sect and gotra to Jain food.",
     sample: { gender: "boy", religion: "jain", templateId: "lavender-bloom" },
-    updated,
+    updated: "2026-10-06",
     body: `
 ## Header line and symbol
 
@@ -948,7 +948,7 @@ Practice varies. Some Jain families match rashi or even full kundali, while many
 3. The header changes to "|| Jai Jinendra ||", the Jain symbol appears and the horoscope section is trimmed to rashi, gotra and kuldevta.
 4. Add a **Diet** field and pick "Jain Food", and add Sect or Community fields with "Add field".
 
-## Sample Jain marriage biodata
+## Jain biodata format: sample for a boy
 
 | Field | Example |
 |---|---|
@@ -965,6 +965,26 @@ Practice varies. Some Jain families match rashi or even full kundali, while many
 | Mother | Rekha Sunil Shah, Homemaker |
 | Siblings | 1 younger sister (studying CA) |
 | Contact | +91 98XXX XXXXX (father) |
+
+## Jain biodata format: sample for a girl
+
+| Field | Example |
+|---|---|
+| Name | Khushi Mahesh Jain |
+| Date of Birth | 9 August 1998, Jaipur |
+| Height | 5' 3" (160 cm) |
+| Religion / Sect | Jain, Digambar |
+| Community | Khandelwal |
+| Gotra | Patni |
+| Education | M.Com, CA (Final) |
+| Occupation | Audit Associate at a CA firm, Jaipur |
+| Diet | Jain food, follows chauvihar |
+| Father | Mahesh Kumar Jain, Textile business |
+| Mother | Sunita Jain, Teacher |
+| Siblings | 1 elder brother (married, settled in Pune) |
+| Contact | +91 98XXX XXXXX (mother) |
+
+For a girl's biodata, families usually look closely at education, the family's practice (derasar or mandir visits, Paryushan, chauvihar) and whether she wishes to continue working after marriage. A line like "Wishes to continue her CA practice after marriage" settles that question early. More wording ideas are on our [biodata for girl](/biodata-for-marriage-for-girl/) page.
 
 ## Family details Jain families look for
 
@@ -1010,7 +1030,7 @@ Jain families often prefer calm, elegant designs. Lavender Bloom and Peacock Gra
     lang: "en",
     topic: "christian",
     slug: "christian-marriage-biodata",
-    title: "Christian Marriage Biodata Format – Free Maker, God is Love",
+    title: "Christian Marriage Biodata Format – Free Word & PDF, God is Love Header",
     description:
       "Create a Christian marriage biodata with a God is Love header, cross symbol and fields for church, denomination, parish and baptism. Free PDF and Word download.",
     h1: "Christian Marriage Biodata Format",
@@ -1102,7 +1122,7 @@ Blue, teal and rose designs work well for Christian biodatas. Royal Blue Classic
     lang: "en",
     topic: "sikh",
     slug: "sikh-marriage-biodata",
-    title: "Sikh Marriage Biodata Format – Ik Onkar Header, Free Maker",
+    title: "Sikh Marriage Biodata Format – Free PDF & Word, Ik Onkar Header",
     description:
       "Create a Sikh marriage biodata with an Ik Onkar or Waheguru header, khanda symbol, gurdwara and diet fields. Free templates with PDF, JPG and Word download.",
     h1: "Sikh Marriage Biodata Format",

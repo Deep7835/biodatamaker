@@ -143,7 +143,7 @@ export const MR: PageContent[] = [
     lang: "mr",
     topic: "format",
     slug: "biodata-format",
-    title: "Marathi Biodata Format – मराठी बायोडाटा फॉरमॅट व नमुना लग्नासाठी (PDF, Word)",
+    title: "मराठी बायोडाटा फॉरमॅट PDF व Word – लग्नासाठी (Marathi Biodata Format)",
     description:
       "लग्नासाठी मराठी बायोडाटा फॉरमॅट: प्रत्येक विभागात काय लिहावे, भरलेला नमुना, फोटोसह व फोटोशिवाय मांडणी. मोफत PDF व Word नमुना डाउनलोड करा किंवा ऑनलाईन बनवा.",
     h1: "मराठी बायोडाटा फॉरमॅट (Marathi Biodata Format) – लग्नासाठी",
@@ -653,7 +653,7 @@ Word फाईल MS Word, WPS Office किंवा Google Docs मध्य�
     lang: "mr",
     topic: "samples",
     slug: "biodata-namuna",
-    title: "मराठी बायोडाटा नमुना PDF व Word – Marathi Biodata Format Free Download",
+    title: "मराठी बायोडाटा नमुना – भरलेले नमुने PDF व Word मोफत डाउनलोड (Biodata Namuna)",
     description:
       "मराठी लग्नाचा बायोडाटा नमुना मोफत डाउनलोड करा: मुलीचा व मुलाचा Word (.docx) आणि PDF. Word फाईल कशी बदलायची आणि फोटोसह ऑनलाईन बायोडाटा कसा बनवायचा ते पाहा.",
     h1: "मराठी बायोडाटा नमुना (PDF व Word फाईल) – मोफत डाउनलोड",
@@ -971,7 +971,7 @@ Word फाईल बदलताना ओळी सरकणे, पान द
     lang: "mr",
     topic: "buddhist",
     slug: "buddhist-biodata",
-    title: "बौद्ध बायोडाटा मराठी – नमो बुद्धाय / जय भीम सह मोफत फॉरमॅट",
+    title: "बौद्ध बायोडाटा मराठी – लग्नासाठी फॉरमॅट व नमुना, नमो बुद्धाय / जय भीम (मोफत)",
     description:
       "बौद्ध समाजासाठी मराठी लग्नाचा बायोडाटा: नमो बुद्धाय किंवा जय भीम मंगल ओळ, धम्मचक्र चिन्ह, पत्रिकेशिवाय फॉरमॅट आणि भरलेला नमुना. मोफत PDF, JPG व Word डाउनलोड.",
     h1: "बौद्ध बायोडाटा (मराठी) – लग्नासाठी फॉरमॅट व नमुना",

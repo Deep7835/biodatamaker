@@ -154,7 +154,7 @@ Planning the match itself? Make a free [marriage biodata](/create/) in the same 
     lang: "mr",
     topic: "invitation",
     slug: "lagna-patrika-maker",
-    title: "लग्नपत्रिका मेकर – मराठी लग्न पत्रिका ऑनलाईन बनवा (Free)",
+    title: "लग्नपत्रिका मेकर – मराठी लग्न पत्रिका नमुना व ऑनलाईन बनवा (PDF, मोफत)",
     description:
       "मराठी लग्नपत्रिका ऑनलाईन मोफत बनवा: 14 डिझाइन, हळद ते स्वागत समारंभ सर्व कार्यक्रम, शुभ मुहूर्त आणि मजकूर नमुने. PDF, JPG डाउनलोड किंवा WhatsApp वर पाठवा.",
     h1: "लग्नपत्रिका मेकर",
