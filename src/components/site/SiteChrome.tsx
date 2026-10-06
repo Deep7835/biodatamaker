@@ -93,6 +93,7 @@ const LABEL: Partial<Record<Topic, L>> = {
   whatsapp: { en: "WhatsApp biodata", hi: "WhatsApp बायोडाटा", mr: "WhatsApp बायोडाटा" },
   hindu: { en: "Hindu", hi: "हिंदू", mr: "हिंदू" },
   brahmin: { en: "Brahmin", hi: "ब्राह्मण", mr: "ब्राह्मण" },
+  maratha: { en: "Maratha", hi: "मराठा", mr: "मराठा" },
   jain: { en: "Jain", hi: "जैन", mr: "जैन" },
   buddhist: { en: "Buddhist", hi: "बौद्ध", mr: "बौद्ध" },
   muslim: { en: "Muslim", hi: "मुस्लिम बायोडाटा", mr: "मुस्लिम" },
@@ -109,7 +110,7 @@ const LABEL: Partial<Record<Topic, L>> = {
 const COLUMNS: { title: L; topics: Topic[] }[] = [
   { title: { en: "Biodata maker", hi: "बायोडाटा मेकर", mr: "बायोडाटा मेकर" }, topics: ["create", "templates", "format", "samples", "guide"] },
   { title: { en: "Biodata for", hi: "किसके लिए", mr: "कोणासाठी" }, topics: ["girl", "boy", "secondMarriage", "withoutPhoto", "whatsapp"] },
-  { title: { en: "By community", hi: "समाज के अनुसार", mr: "समाजानुसार" }, topics: ["hindu", "brahmin", "jain", "buddhist", "muslim", "christian", "sikh"] },
+  { title: { en: "By community", hi: "समाज के अनुसार", mr: "समाजानुसार" }, topics: ["hindu", "brahmin", "maratha", "jain", "buddhist", "muslim", "christian", "sikh"] },
   { title: { en: "Free tools", hi: "मुफ़्त टूल्स", mr: "मोफत साधने" }, topics: ["gunaMilan", "birthChart", "invitation", "muhurat", "typing"] },
 ];
 

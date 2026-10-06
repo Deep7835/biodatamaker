@@ -297,7 +297,7 @@ const mr: Dict = {
     privacy: "तुमची माहिती तुमच्या डिव्हाइसबाहेर जात नाही. लॉगिन नाही, मोफत टेम्पलेटवर वॉटरमार्क नाही.",
   },
   religions: { hindu: "हिंदू", jain: "जैन", buddhist: "बौद्ध", muslim: "मुस्लिम", christian: "ख्रिश्चन", sikh: "शीख" },
-  symbols: { none: "काही नाही", ganesh: "गणपती", om: "ॐ", swastik: "स्वस्तिक", kalash: "कलश", lotus: "कमळ", cross: "क्रॉस", crescent: "चंद्र-तारा", khanda: "खंडा", chakra: "धम्मचक्र", jain: "जैन", custom: "माझी फोटो" },
+  symbols: { none: "काही नाही", ganesh: "गणपती", om: "ॐ", swastik: "स्वस्तिक", kalash: "कलश", lotus: "कमळ", cross: "क्रॉस", crescent: "चंद्र-तारा", khanda: "खंडा", chakra: "धम्मचक्र", jain: "जैन", custom: "माझा फोटो" },
   footer: {
     tagline: "मराठी, हिंदी आणि इंग्रजीत मोफत लग्नाचा बायोडाटा मेकर.",
     privacy: "गोपनीयता",

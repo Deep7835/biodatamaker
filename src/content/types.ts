@@ -15,8 +15,12 @@ export type Topic =
   | "christian"
   | "sikh"
   | "brahmin"
+  | "maratha"
   | "secondMarriage"
   | "withoutPhoto"
+  | "expectations"
+  | "horoscopeGuide"
+  | "familyDetails"
   | "tools"
   | ToolId
   | "templates"

@@ -326,6 +326,16 @@ export function allLabels(): string[] {
 const GAN_OF = [0, 1, 2, 1, 0, 1, 0, 0, 2, 2, 1, 1, 0, 2, 0, 2, 0, 2, 2, 1, 1, 0, 2, 2, 1, 1, 0];
 const NADI_OF = [0, 1, 2, 2, 1, 0, 0, 1, 2, 2, 1, 0, 0, 1, 2, 2, 1, 0, 0, 1, 2, 2, 1, 0, 0, 1, 2];
 
+/** Every nakshatra with its gan, nadi and the rashi of each charan (the same data the auto-fill uses; for content tables). */
+export function nakshatraFacts(lang: Lang) {
+  return NAKSHATRA[lang].map((name, i) => ({
+    name,
+    gan: FIELDS.gan.suggest![lang][GAN_OF[i]],
+    nadi: FIELDS.nadi.suggest![lang][NADI_OF[i]],
+    rashiByCharan: [1, 2, 3, 4].map((c) => RASHI[lang][Math.floor((i * 4 + c - 1) / 9)]),
+  }));
+}
+
 function nakshatraIndex(value: string) {
   const v = value.trim().toLowerCase();
   if (!v) return -1;

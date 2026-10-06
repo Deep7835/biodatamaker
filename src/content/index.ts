@@ -2,13 +2,14 @@ import { href, type Lang } from "@/lib/i18n";
 import { EN } from "./en";
 import { HI } from "./hi";
 import { MR } from "./mr";
+import { MR_GUIDES } from "./mr-guides";
 import { TOOL_PAGES } from "./tools";
 import { TOPIC_SLUGS, topicPath } from "./slugs";
 import type { PageContent, Topic } from "./types";
 
 export { topicPath } from "./slugs";
 
-export const PAGES: PageContent[] = [...EN, ...HI, ...MR, ...TOOL_PAGES];
+export const PAGES: PageContent[] = [...EN, ...HI, ...MR, ...MR_GUIDES, ...TOOL_PAGES];
 
 export function getPage(lang: Lang, slug: string) {
   return PAGES.find((p) => p.lang === lang && p.slug === slug);
