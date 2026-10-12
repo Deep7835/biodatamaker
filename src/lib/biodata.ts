@@ -284,7 +284,7 @@ export function createBiodata(
       rows: keys.map((k) => ({
         id: `${sid}-${k}`,
         label: FIELDS[k].label[lang],
-        value: !sample ? "" : k === "religion" ? preset.religion[lang] : sampleValue(k, lang, gender),
+        value: !sample ? "" : k === "religion" ? preset.religion[lang] : sampleValue(k, lang, gender, religion),
       })),
     }));
   return {
@@ -311,7 +311,70 @@ const BOY: Partial<Record<string, L>> = {
   sisters: { en: "1 (Neha – Married)", hi: "1 (नेहा – विवाहित)", mr: "1 (नेहा – विवाहित)" },
 };
 
-function sampleValue(key: string, lang: Lang, gender: Gender) {
+/** Sample family per religion, so a Christian or Sikh sample (hero images, downloadable formats) doesn't carry Hindu names. */
+type SampleFamily = { family: Partial<Record<string, L>>; girl: Partial<Record<string, L>>; boy: Partial<Record<string, L>> };
+const RELIGION_SAMPLES: Partial<Record<Religion, SampleFamily>> = {
+  muslim: {
+    family: {
+      father: { en: "Imran Yusuf Shaikh", hi: "इमरान यूसुफ़ शेख", mr: "इम्रान युसूफ शेख" },
+      mother: { en: "Shabana Imran Shaikh", hi: "शबाना इमरान शेख", mr: "शबाना इम्रान शेख" },
+      mama: { en: "Salim Khan, Aurangabad", hi: "सलीम ख़ान, औरंगाबाद", mr: "सलीम खान, औरंगाबाद" },
+      relatives: { en: "Shaikh, Khan, Qureshi", hi: "शेख, ख़ान, क़ुरैशी", mr: "शेख, खान, कुरेशी" },
+      native: { en: "Aurangabad", hi: "औरंगाबाद", mr: "औरंगाबाद" },
+    },
+    girl: { name: { en: "Ayesha Imran Shaikh", hi: "आयशा इमरान शेख", mr: "आयशा इम्रान शेख" }, brothers: { en: "1 (Arif – Married, CA)", hi: "1 (आरिफ़ – विवाहित, CA)", mr: "1 (आरिफ – विवाहित, CA)" } },
+    boy: { name: { en: "Faizan Imran Shaikh", hi: "फ़ैज़ान इमरान शेख", mr: "फैजान इम्रान शेख" }, sisters: { en: "1 (Sana – Married)", hi: "1 (सना – विवाहित)", mr: "1 (सना – विवाहित)" } },
+  },
+  christian: {
+    family: {
+      father: { en: "Joseph Anthony D'Souza", hi: "जोसेफ़ एंथनी डिसूज़ा", mr: "जोसेफ अँथनी डिसोझा" },
+      mother: { en: "Maria Joseph D'Souza", hi: "मारिया जोसेफ़ डिसूज़ा", mr: "मारिया जोसेफ डिसोझा" },
+      mama: { en: "Francis Pereira, Vasai", hi: "फ़्रांसिस परेरा, वसई", mr: "फ्रान्सिस परेरा, वसई" },
+      relatives: { en: "D'Souza, Pereira, Fernandes", hi: "डिसूज़ा, परेरा, फ़र्नांडिस", mr: "डिसोझा, परेरा, फर्नांडिस" },
+      native: { en: "Vasai", hi: "वसई", mr: "वसई" },
+    },
+    girl: { name: { en: "Sharon Joseph D'Souza", hi: "शेरोन जोसेफ़ डिसूज़ा", mr: "शेरॉन जोसेफ डिसोझा" }, brothers: { en: "1 (Kevin – Married, CA)", hi: "1 (केविन – विवाहित, CA)", mr: "1 (केविन – विवाहित, CA)" } },
+    boy: { name: { en: "Ryan Joseph D'Souza", hi: "रायन जोसेफ़ डिसूज़ा", mr: "रायन जोसेफ डिसोझा" }, sisters: { en: "1 (Rebecca – Married)", hi: "1 (रेबेका – विवाहित)", mr: "1 (रेबेका – विवाहित)" } },
+  },
+  sikh: {
+    family: {
+      father: { en: "Gurmeet Singh Gill", hi: "गुरमीत सिंह गिल", mr: "गुरमीत सिंह गिल" },
+      mother: { en: "Jaswinder Kaur Gill", hi: "जसविंदर कौर गिल", mr: "जसविंदर कौर गिल" },
+      mama: { en: "Baljit Singh Sandhu, Ludhiana", hi: "बलजीत सिंह संधू, लुधियाना", mr: "बलजीत सिंह संधू, लुधियाना" },
+      relatives: { en: "Gill, Sandhu, Grewal", hi: "गिल, संधू, ग्रेवाल", mr: "गिल, संधू, ग्रेवाल" },
+      native: { en: "Amritsar", hi: "अमृतसर", mr: "अमृतसर" },
+    },
+    girl: { name: { en: "Simran Kaur Gill", hi: "सिमरन कौर गिल", mr: "सिमरन कौर गिल" }, brothers: { en: "1 (Jaspreet – Married, CA)", hi: "1 (जसप्रीत – विवाहित, CA)", mr: "1 (जसप्रीत – विवाहित, CA)" } },
+    boy: { name: { en: "Harpreet Singh Gill", hi: "हरप्रीत सिंह गिल", mr: "हरप्रीत सिंह गिल" }, sisters: { en: "1 (Navneet – Married)", hi: "1 (नवनीत – विवाहित)", mr: "1 (नवनीत – विवाहित)" } },
+  },
+  jain: {
+    family: {
+      father: { en: "Sunil Chandulal Shah", hi: "सुनील चंदूलाल शाह", mr: "सुनील चंदूलाल शहा" },
+      mother: { en: "Rekha Sunil Shah", hi: "रेखा सुनील शाह", mr: "रेखा सुनील शहा" },
+      mama: { en: "Rajendra Bafna, Jaipur", hi: "राजेंद्र बाफना, जयपुर", mr: "राजेंद्र बाफना, जयपूर" },
+      relatives: { en: "Shah, Mehta, Bafna", hi: "शाह, मेहता, बाफना", mr: "शहा, मेहता, बाफना" },
+      native: { en: "Ahmedabad", hi: "अहमदाबाद", mr: "अहमदाबाद" },
+    },
+    girl: { name: { en: "Khushi Sunil Shah", hi: "ख़ुशी सुनील शाह", mr: "खुशी सुनील शहा" }, brothers: { en: "1 (Parth – Married, CA)", hi: "1 (पार्थ – विवाहित, CA)", mr: "1 (पार्थ – विवाहित, CA)" } },
+    boy: { name: { en: "Rishabh Sunil Shah", hi: "ऋषभ सुनील शाह", mr: "ऋषभ सुनील शहा" } },
+  },
+  buddhist: {
+    family: {
+      father: { en: "Sunil Bhimrao Kamble", hi: "सुनील भीमराव कांबले", mr: "सुनील भीमराव कांबळे" },
+      mother: { en: "Sunanda Sunil Kamble", hi: "सुनंदा सुनील कांबले", mr: "सुनंदा सुनील कांबळे" },
+      mama: { en: "Rajesh Gaikwad, Nagpur", hi: "राजेश गायकवाड, नागपुर", mr: "राजेश गायकवाड, नागपूर" },
+      relatives: { en: "Kamble, Gaikwad, Wankhede", hi: "कांबले, गायकवाड, वानखेडे", mr: "कांबळे, गायकवाड, वानखेडे" },
+      native: { en: "Nagpur", hi: "नागपुर", mr: "नागपूर" },
+    },
+    girl: { name: { en: "Pranali Sunil Kamble", hi: "प्रणाली सुनील कांबले", mr: "प्रणाली सुनील कांबळे" } },
+    boy: { name: { en: "Siddharth Sunil Kamble", hi: "सिद्धार्थ सुनील कांबले", mr: "सिद्धार्थ सुनील कांबळे" } },
+  },
+};
+
+function sampleValue(key: string, lang: Lang, gender: Gender, religion: Religion) {
+  const r = RELIGION_SAMPLES[religion];
+  const own = r?.[gender][key] ?? r?.family[key];
+  if (own) return own[lang];
   if (gender === "boy" && BOY[key]) return BOY[key]![lang];
   return FIELDS[key].sample[lang];
 }

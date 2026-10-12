@@ -7,13 +7,13 @@ export const EN: PageContent[] = [
     lang: "en",
     topic: "home",
     slug: "",
-    title: "Free Biodata Maker for Marriage – PDF & Word, No Watermark",
+    title: "Marathi Biodata Maker – Free Marriage Biodata in Marathi, Hindi & English",
     description:
-      "Make a marriage biodata in English, Hindi or Marathi in minutes. 35 templates, with or without photo, PDF, JPG and Word download. Free, no login, no watermark.",
-    h1: "Free Biodata Maker for Marriage",
-    lead: "Fill in your details, pick a design and download a print-ready biodata as PDF, image or Word file. Free templates have no watermark, and you don't need to sign up.",
+      "Free Marathi biodata maker for marriage, also in Hindi and English. Type in English and get Marathi, pick from 35 templates and download PDF, JPG or Word. No login, no watermark.",
+    h1: "Free Marathi Biodata Maker for Marriage (also Hindi & English)",
+    lead: "Make your marriage biodata in Marathi, Hindi or English: fill in your details, pick a design and download a print-ready PDF, image or Word file. Free templates have no watermark, and you don't need to sign up.",
     sample: { gender: "girl", templateId: "kesari-classic" },
-    updated,
+    updated: "2026-10-12",
     body: `
 ## What is a marriage biodata?
 
@@ -79,7 +79,9 @@ Most families prefer a biodata with a clear, recent photo, and every template ha
 
 You get all three from the same biodata, free. The Word file keeps your text, photo and headings in simple tables so it stays easy to edit. See the [marriage biodata Word format](/marriage-biodata-word-format/) page for downloadable sample files, and the [marriage biodata format](/marriage-biodata-format/) page for the full section-by-section structure.
 
-## Marathi and Hindi biodata
+## Marathi biodata maker: your biodata in Marathi
+
+This site began as a Marathi biodata maker, and Marathi is still where it is strongest. The [Marathi biodata maker](/marathi/) uses the field names Marathi families expect, starts with "।। श्री गणेशाय नमः ।।", and fills gan and nadi from your nakshatra. Ready guides cover the [Marathi biodata format](/marathi/biodata-format/), [Brahmin](/marathi/brahman-biodata/) and [Maratha](/marathi/maratha-biodata/) biodata, and [what to write in the horoscope section](/marathi/biodata-patrika-mahiti/).
 
 Many families prefer a biodata in their mother tongue, especially when it goes to grandparents or relatives in the native place. Marathi Biodata Make has complete Marathi and Hindi versions with the labels families actually use, such as रास, नक्षत्र, गण, नाडी, देवक, कुलदैवत and मामा (आजोळ).
 
@@ -734,7 +736,7 @@ For what to write in each field, read the [marriage biodata format](/marriage-bi
     h1: "Muslim Marriage Biodata Maker",
     lead: "A respectful format for Muslim families, with a Bismillah header, a crescent symbol and fields for sect or maslak, without horoscope details.",
     sample: { gender: "boy", religion: "muslim", templateId: "emerald-band" },
-    updated,
+    updated: "2026-10-12",
     body: `
 ## Muslim biodata format
 
@@ -772,6 +774,15 @@ You can also upload a calligraphy image or your family logo in place of the cres
 | Siblings | 1 elder sister (married), 1 younger brother (studying) |
 | Native Place | Aurangabad, Maharashtra |
 | Contact | +91 99XXX XXXXX (father) |
+
+## Download a Muslim biodata format (Word & PDF)
+
+| File | Download |
+|---|---|
+| Word (.docx), edit in MS Word or Google Docs | [Download Word](/samples/muslim-marriage-biodata-format.docx) |
+| PDF, ready to print | [Download PDF](/samples/muslim-marriage-biodata-format.pdf) |
+
+Both are free, without a watermark or sign-up. Replace the sample details with your own, or skip the file and fill the same format online in the [biodata maker](/create/), where you can add your photo, change the design and download again any time.
 
 ## Optional lines families often add
 
@@ -822,7 +833,7 @@ The format is the same for both. For a Muslim girl's biodata, soft designs such 
     lang: "en",
     topic: "hindu",
     slug: "hindu-marriage-biodata",
-    title: "Hindu Marriage Biodata Format – Free Maker with Horoscope",
+    title: "Hindu Marriage Biodata Format – Free PDF & Word with Horoscope",
     description:
       "Make a Hindu marriage biodata with Shree Ganeshaya Namah, a Ganesha symbol and horoscope fields: rashi, nakshatra, gan, nadi, gotra. Free PDF and Word download.",
     h1: "Hindu Marriage Biodata Format",
@@ -986,6 +997,15 @@ Practice varies. Some Jain families match rashi or even full kundali, while many
 
 For a girl's biodata, families usually look closely at education, the family's practice (derasar or mandir visits, Paryushan, chauvihar) and whether she wishes to continue working after marriage. A line like "Wishes to continue her CA practice after marriage" settles that question early. More wording ideas are on our [biodata for girl](/biodata-for-marriage-for-girl/) page.
 
+## Download a Jain biodata format (Word & PDF)
+
+| File | Download |
+|---|---|
+| Word (.docx), edit in MS Word or Google Docs | [Download Word](/samples/jain-marriage-biodata-format.docx) |
+| PDF, ready to print | [Download PDF](/samples/jain-marriage-biodata-format.pdf) |
+
+Both are free, without a watermark or sign-up. Replace the sample details with your own, or skip the file and fill the same format online in the [biodata maker](/create/), where you can add your photo, change the design and download again any time.
+
 ## Family details Jain families look for
 
 - **Native place:** many Jain families note their ancestral town in Rajasthan, Gujarat or Karnataka even if they now live in Mumbai, Pune, Kolkata or Chennai.
@@ -1036,7 +1056,7 @@ Jain families often prefer calm, elegant designs. Lavender Bloom and Peacock Gra
     h1: "Christian Marriage Biodata Format",
     lead: "A clean Christian biodata with a God is Love header, a cross and fields for church and denomination, ready to share with families and your parish.",
     sample: { gender: "girl", religion: "christian", templateId: "royal-blue-classic" },
-    updated,
+    updated: "2026-10-12",
     body: `
 ## Header line and symbol
 
@@ -1075,6 +1095,15 @@ Horoscope fields are not included.
 | Mother | Mary Joseph, Homemaker |
 | Siblings | 1 elder brother (married, working in Dubai) |
 | Contact | +91 94XXX XXXXX (father) |
+
+## Download a Christian biodata format (Word & PDF)
+
+| File | Download |
+|---|---|
+| Word (.docx), edit in MS Word or Google Docs | [Download Word](/samples/christian-marriage-biodata-format.docx) |
+| PDF, ready to print | [Download PDF](/samples/christian-marriage-biodata-format.pdf) |
+
+Both are free, without a watermark or sign-up. Replace the sample details with your own, or skip the file and fill the same format online in the [biodata maker](/create/), where you can add your photo, change the design and download again any time.
 
 ## Family details in a Christian biodata
 
@@ -1128,7 +1157,7 @@ Blue, teal and rose designs work well for Christian biodatas. Royal Blue Classic
     h1: "Sikh Marriage Biodata Format",
     lead: "A Sikh biodata with an Ik Onkar header, the khanda and fields for gurdwara and diet. Fill it in and download a print-ready PDF or Word file.",
     sample: { gender: "boy", religion: "sikh", templateId: "mehndi-band" },
-    updated,
+    updated: "2026-10-12",
     body: `
 ## Header line and symbol
 
@@ -1169,6 +1198,15 @@ Horoscope fields are not included.
 | Mother | Sardarni Jaspreet Kaur, Homemaker |
 | Siblings | 1 elder sister (married, Canada) |
 | Contact | +91 98XXX XXXXX (father) |
+
+## Download a Sikh biodata format (Word & PDF)
+
+| File | Download |
+|---|---|
+| Word (.docx), edit in MS Word or Google Docs | [Download Word](/samples/sikh-marriage-biodata-format.docx) |
+| PDF, ready to print | [Download PDF](/samples/sikh-marriage-biodata-format.pdf) |
+
+Both are free, without a watermark or sign-up. Replace the sample details with your own, or skip the file and fill the same format online in the [biodata maker](/create/), where you can add your photo, change the design and download again any time.
 
 ## Name and family details
 
@@ -1216,13 +1254,13 @@ Warm, festive colours suit a Sikh biodata. Mehndi Band and Kesari Band use a col
     lang: "en",
     topic: "brahmin",
     slug: "brahmin-marriage-biodata",
-    title: "Brahmin Marriage Biodata Format – Gotra, Pravar, Shakha, Ved",
+    title: "Brahmin Marriage Biodata Format – Free PDF & Word with Gotra, Ved, Shakha",
     description:
       "Make a Brahmin marriage biodata with gotra, pravar, shakha, ved and kuldevta fields plus full horoscope details. Free templates with PDF and Word download.",
     h1: "Brahmin Marriage Biodata Format",
     lead: "A Brahmin biodata with the details Brahmin families match: gotra, pravar, shakha, ved and kuldevta, along with the full horoscope.",
     sample: { gender: "boy", religion: "hindu", templateId: "kesari-band" },
-    updated,
+    updated: "2026-10-12",
     body: `
 ## Why a Brahmin biodata has extra fields
 

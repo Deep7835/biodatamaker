@@ -7,6 +7,8 @@
  *   public/icons/icon-192.png, icon-512.png   PWA icons
  *
  * Needs Google Chrome (set CHROME_PATH if it isn't in the default macOS location) and a fresh `next build`.
+ * Pass step names to run only some of them, e.g. `node scripts/generate-assets.mjs hero samples`
+ * (steps: templates, hero, samples, icons; default: all). Add --missing to only create files that don't exist yet.
  */
 import { spawn } from "node:child_process";
 import { createReadStream, existsSync, mkdirSync, mkdtempSync, statSync, writeFileSync } from "node:fs";
@@ -22,6 +24,9 @@ const LANGS = ["en", "hi", "mr"];
 const SAMPLE_NAMES = { en: "marriage-biodata-format", hi: "hindi-biodata-format", mr: "marathi-biodata-format" };
 const A4 = { w: 794, h: 1123 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const STEPS = new Set(process.argv.slice(2));
+const MISSING_ONLY = STEPS.delete("--missing"); // skip files that already exist
+const step = (name) => !STEPS.size || STEPS.has(name);
 
 if (!existsSync(join(OUT, "render", "index.html"))) {
   console.error("Run `next build` first (out/render/ is missing).");
@@ -79,6 +84,7 @@ await send("Page.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: A4.w, height: A4.h, deviceScaleFactor: 0.75, mobile: false });
 
 // 1) Template previews
+if (step("templates")) {
 await send("Page.navigate", { url: `${BASE}/render/?t=kesari-classic&l=en` });
 await waitFor("window.__renderReady === true");
 const ids = JSON.parse(await evaluate(`fetch('/templates/').then(r => r.text()).then(h => JSON.stringify([...new Set([...h.matchAll(/[?]t=([a-z0-9-]+)/g)].map(m => m[1]))]))`));
@@ -97,23 +103,41 @@ for (const lang of LANGS) {
   }
 }
 console.log(`✓ ${n} template previews (+ small variants)`);
+}
 
 // 1b) Hero sample for each content page, matching its gender / religion / photo settings.
+if (step("hero")) {
 mkdirSync(join(PUB, "hero"), { recursive: true });
 const heroes = await (await fetch(`${BASE}/hero-index.json`)).json();
 for (const h of heroes) {
+  const file = join(PUB, "hero", `${h.lang}-${h.slug || "home"}.webp`);
+  if (MISSING_ONLY && existsSync(file)) continue;
   await open(`${BASE}/render/?t=${h.t}&l=${h.lang}&g=${h.g}&r=${h.r}&np=${h.np}`);
   const shot = await send("Page.captureScreenshot", { format: "webp", quality: 82, clip: { x: 0, y: 0, width: A4.w, height: A4.h, scale: 1 } });
-  writeFileSync(join(PUB, "hero", `${h.lang}-${h.slug || "home"}.webp`), Buffer.from(shot.result.data, "base64"));
+  writeFileSync(file, Buffer.from(shot.result.data, "base64"));
 }
-console.log(`✓ ${heroes.length} hero samples`);
+console.log(`✓ hero samples (${heroes.length} pages)`);
+}
 
 // 2) Sample PDF / Word per language
 await send("Emulation.setDeviceMetricsOverride", { width: A4.w, height: A4.h, deviceScaleFactor: 1, mobile: false });
 mkdirSync(join(PUB, "samples"), { recursive: true });
-for (const lang of LANGS) for (const [gender, tpl, suffix] of [["girl", "kesari-classic", ""], ["boy", "royal-blue-classic", "-boy"]]) {
+// Per language: girl + boy. English community pages also get their own sample ("christian biodata format download").
+const SAMPLES = [
+  ...LANGS.flatMap((lang) => [
+    { lang, gender: "girl", tpl: "kesari-classic", religion: "", name: SAMPLE_NAMES[lang] },
+    { lang, gender: "boy", tpl: "royal-blue-classic", religion: "", name: `${SAMPLE_NAMES[lang]}-boy` },
+  ]),
+  { lang: "en", gender: "girl", tpl: "rose-classic", religion: "christian", name: "christian-marriage-biodata-format" },
+  { lang: "en", gender: "girl", tpl: "lavender-bloom", religion: "jain", name: "jain-marriage-biodata-format" },
+  { lang: "en", gender: "boy", tpl: "mehndi-band", religion: "sikh", name: "sikh-marriage-biodata-format" },
+  { lang: "en", gender: "boy", tpl: "emerald-band", religion: "muslim", name: "muslim-marriage-biodata-format" },
+];
+if (step("samples"))
+for (const { lang, gender, tpl, religion, name } of SAMPLES) {
   for (const kind of ["pdf", "docx"]) {
-    await open(`${BASE}/render/?t=${tpl}&l=${lang}&g=${gender}`);
+    if (MISSING_ONLY && existsSync(join(PUB, "samples", `${name}.${kind}`))) continue;
+    await open(`${BASE}/render/?t=${tpl}&l=${lang}&g=${gender}&r=${religion}`);
     const b64 = await evaluate(`(async () => {
       let href;
       HTMLAnchorElement.prototype.click = function () { if (this.download) href = this.href; };
@@ -125,13 +149,14 @@ for (const lang of LANGS) for (const [gender, tpl, suffix] of [["girl", "kesari-
       let s = ''; for (let i = 0; i < buf.length; i += 32768) s += String.fromCharCode(...buf.subarray(i, i + 32768));
       return btoa(s);
     })()`);
-    const file = join(PUB, "samples", `${SAMPLE_NAMES[lang]}${suffix}.${kind}`);
+    const file = join(PUB, "samples", `${name}.${kind}`);
     writeFileSync(file, Buffer.from(b64, "base64"));
     console.log(`✓ ${file.replace(ROOT + "/", "")}`);
   }
 }
 
 // 3) PWA icons from the SVG app icon
+if (step("icons")) {
 mkdirSync(join(PUB, "icons"), { recursive: true });
 for (const size of [192, 512]) {
   await send("Emulation.setDeviceMetricsOverride", { width: size, height: size, deviceScaleFactor: 1, mobile: false });
@@ -142,6 +167,7 @@ for (const size of [192, 512]) {
   writeFileSync(join(PUB, "icons", `icon-${size}.png`), Buffer.from(shot.result.data, "base64"));
 }
 console.log("✓ PWA icons");
+}
 
 ws.close();
 chrome.kill();

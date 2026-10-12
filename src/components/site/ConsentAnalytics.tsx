@@ -39,6 +39,8 @@ export function ConsentAnalytics({ gaId, clarityId }: { gaId: string; clarityId:
   const [lang, setLang] = useState<"en" | "hi" | "mr">("en");
 
   useEffect(() => {
+    // /render/ is the internal page used to screenshot templates and build sample files: no banner, no tracking.
+    if (window.location.pathname.startsWith("/render")) return;
     captureUtm();
     if (!gaId && !clarityId) return;
     const l = document.documentElement.lang.slice(0, 2);
