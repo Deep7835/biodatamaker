@@ -3,17 +3,23 @@
 import { IconCheck, IconWarning } from "../editor/Icons";
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { SITE, toDevanagariDigits, type Lang } from "@/lib/i18n";
+import { BENGALI_MONTH, fmtTime, localName, MONTHS, MONTHS_SHORT, NAKSHATRA, TITHI, WEEKDAYS } from "@/lib/tools/muhurat-names";
 import { topicPath } from "@/content/slugs";
 import { copyText } from "@/lib/tools/clipboard";
 import {
   ACCESSED,
+  BENGAL_CONFIRMED,
+  BENGAL_SOME,
+  COVERED_TO,
   MAHARASHTRA_CONFIRMED,
   MAHARASHTRA_SOME,
+  MITHILA_CONFIRMED,
   NORTH_CONFIRMED,
   NORTH_SOME,
   PERIODS,
   RANGE,
   SOURCES,
+  type BengaliMonth,
   type DatasetId,
   type MuhuratDate,
   type MuhuratWindow,
@@ -22,55 +28,6 @@ import {
   type SomeDate,
   type SourceId,
 } from "@/lib/tools/muhurat-data";
-
-const MONTHS: Record<Lang, string[]> = {
-  en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  hi: ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"],
-  mr: ["जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून", "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर", "नोव्हेंबर", "डिसेंबर"],
-};
-const MONTHS_SHORT: Record<Lang, string[]> = {
-  en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  hi: MONTHS.hi,
-  mr: MONTHS.mr,
-};
-const WEEKDAYS: Record<Lang, string[]> = {
-  en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-  hi: ["रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"],
-  mr: ["रविवार", "सोमवार", "मंगळवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"],
-};
-
-const NAKSHATRA: Record<string, { hi: string; mr: string }> = {
-  Anuradha: { hi: "अनुराधा", mr: "अनुराधा" },
-  Hasta: { hi: "हस्त", mr: "हस्त" },
-  Krittika: { hi: "कृत्तिका", mr: "कृत्तिका" },
-  Magha: { hi: "मघा", mr: "मघा" },
-  Mrigashira: { hi: "मृगशिरा", mr: "मृगशीर्ष" },
-  Mula: { hi: "मूल", mr: "मूळ" },
-  "Purva Ashadha": { hi: "पूर्वाषाढ़ा", mr: "पूर्वाषाढा" },
-  Revati: { hi: "रेवती", mr: "रेवती" },
-  Rohini: { hi: "रोहिणी", mr: "रोहिणी" },
-  Swati: { hi: "स्वाति", mr: "स्वाती" },
-  "Uttara Ashadha": { hi: "उत्तराषाढ़ा", mr: "उत्तराषाढा" },
-  "Uttara Bhadrapada": { hi: "उत्तरा भाद्रपद", mr: "उत्तरा भाद्रपदा" },
-  "Uttara Phalguni": { hi: "उत्तरा फाल्गुनी", mr: "उत्तरा फाल्गुनी" },
-};
-const TITHI: Record<string, { hi: string; mr: string }> = {
-  Pratipada: { hi: "प्रतिपदा", mr: "प्रतिपदा" },
-  Dwitiya: { hi: "द्वितीया", mr: "द्वितीया" },
-  Tritiya: { hi: "तृतीया", mr: "तृतीया" },
-  Chaturthi: { hi: "चतुर्थी", mr: "चतुर्थी" },
-  Panchami: { hi: "पंचमी", mr: "पंचमी" },
-  Shashthi: { hi: "षष्ठी", mr: "षष्ठी" },
-  Saptami: { hi: "सप्तमी", mr: "सप्तमी" },
-  Ashtami: { hi: "अष्टमी", mr: "अष्टमी" },
-  Navami: { hi: "नवमी", mr: "नवमी" },
-  Dashami: { hi: "दशमी", mr: "दशमी" },
-  Ekadashi: { hi: "एकादशी", mr: "एकादशी" },
-  Dwadashi: { hi: "द्वादशी", mr: "द्वादशी" },
-  Trayodashi: { hi: "त्रयोदशी", mr: "त्रयोदशी" },
-  Chaturdashi: { hi: "चतुर्दशी", mr: "चतुर्दशी" },
-  Purnima: { hi: "पूर्णिमा", mr: "पौर्णिमा" },
-};
 
 const SOURCE_SHORT: Record<SourceId, string> = {
   drik: "Drik Panchang",
@@ -90,16 +47,24 @@ const SOURCE_SHORT: Record<SourceId, string> = {
   holika: "Dr. R. P. Sharma",
 };
 
+
+
 const T = {
   en: {
     tradition: "Panchang tradition",
     north: "North India (Hindi panchangs)",
     maharashtra: "Maharashtra (Marathi panchangs)",
+    mithila: "Mithila (Maithili panchang)",
+    bengal: "Bengal (Bengali panjika)",
     note: "Dates compiled from published panchangs (sources listed below); confirm the exact muhurat time with your purohit.",
     noteMore: "Muhurat windows shown are Drik Panchang's timings for New Delhi. Your city's timings can differ, and your purohit will also check both horoscopes.",
+    noteMithila:
+      "Dates from the Mithila Vishwavidyalaya Panchang 2026-27 (Kameshwar Singh Darbhanga Sanskrit University). The panchang gives dates only; your pandit will fix the lagna time.",
+    noteBengal:
+      "Dates from Beni Madhab Sil's Full Panjika 1433 (mid-April 2026 to mid-April 2027). Gupta Press and Bisuddha Siddhanta panjikas can differ by a day or two. Your purohit will fix the lagna time.",
     digits: "Devanagari digits (१२३)",
     months: "Jump to a month",
-    total: (n: number) => `${n} confirmed dates, Nov 2026 – Dec 2027`,
+    total: (n: number, range: string) => `${n} confirmed dates, ${range}`,
     next: "Next confirmed muhurat",
     noneLeft: "All listed dates have passed. Check back for the next season's list.",
     past: "Past",
@@ -110,6 +75,11 @@ const T = {
     nextDay: "next day",
     early: (d: string) => `early hours of ${d}`,
     none: "No wedding muhurat this month.",
+    noneHere: "This panchang gives no wedding date this month.",
+    notYet: { mithila: "Not yet published: these dates will be in the Mithila panchang 2027-28.", bengal: "Not yet published: these dates will be in the Bengali panjika 1434 (from Poila Boishakh, mid-April 2027)." },
+    bengaliDate: "Bengali date",
+    extra: (n: number) => `Additional Kartik dates in the panjika (${n}) – ask your purohit`,
+    extraHint: "The panjika lists these only as additional dates, before the main Agrahayan season. Many families do not use them.",
     noneWhy: "Why:",
     some: (n: number) => `Also listed by only one panchang (${n}) – not confirmed`,
     someHint: "These dates appear in just one source (or only in Drik Panchang and a site that copies it). Ask your purohit before considering them.",
@@ -131,9 +101,10 @@ const T = {
     share: "Share list",
     copied: "List copied. Paste it in WhatsApp or a note.",
     copyFail: "Couldn't copy. Please try again.",
-    listTitle: (d: string) => `Vivah muhurat Nov 2026 – Dec 2027 · ${d}`,
+    listTitle: (d: string) => `Vivah muhurat 2026–2027 · ${d}`,
     listNone: "no muhurat",
     listMhNone: "Marathi panchang dates not yet confirmed.",
+    listNotYet: "not yet published",
     before: "Before you fix the date:",
     kundli: "match kundli (gun milan)",
     biodata: "make the biodata",
@@ -146,11 +117,17 @@ const T = {
     tradition: "पंचांग परंपरा",
     north: "उत्तर भारत (हिंदी पंचांग)",
     maharashtra: "महाराष्ट्र (मराठी पंचांग)",
+    mithila: "मिथिला (मैथिली पंचांग)",
+    bengal: "बंगाल (बांग्ला पंजिका)",
     note: "तारीखें प्रकाशित पंचांगों से संकलित हैं (स्रोत नीचे दिए हैं); मुहूर्त का सही समय अपने पुरोहित से ज़रूर पक्का करें।",
     noteMore: "दिखाया गया मुहूर्त समय द्रिक पंचांग के अनुसार नई दिल्ली का है। आपके शहर में समय अलग हो सकता है, और पुरोहित वर-वधू की कुंडली भी देखेंगे।",
+    noteMithila:
+      "तिथियाँ मिथिला विश्वविद्यालय पंचांग 2026-27 (कामेश्वर सिंह दरभंगा संस्कृत विश्वविद्यालय) से हैं। पंचांग में केवल तिथियाँ हैं; लग्न का समय पंडित जी तय करेंगे।",
+    noteBengal:
+      "तिथियाँ बेणीमाधव शील की फुल पंजिका 1433 (मध्य अप्रैल 2026 से मध्य अप्रैल 2027) से हैं। गुप्त प्रेस और विशुद्ध सिद्धांत पंजिका में एक-दो दिन का फ़र्क हो सकता है। लग्न का समय पुरोहित तय करेंगे।",
     digits: "देवनागरी अंक (१२३)",
     months: "महीना चुनें",
-    total: (n: number) => `नवंबर 2026 – दिसंबर 2027 में ${n} पक्की तारीखें`,
+    total: (n: number, range: string) => `${range} में ${n} पक्की तारीखें`,
     next: "अगला पक्का मुहूर्त",
     noneLeft: "सूची की सभी तारीखें बीत चुकी हैं। अगले सीज़न की सूची के लिए फिर देखें।",
     past: "बीत गया",
@@ -161,6 +138,11 @@ const T = {
     nextDay: "अगले दिन",
     early: (d: string) => `${d} की भोर`,
     none: "इस महीने विवाह का कोई मुहूर्त नहीं है।",
+    noneHere: "इस पंचांग में इस महीने विवाह की कोई तिथि नहीं है।",
+    notYet: { mithila: "अभी प्रकाशित नहीं: ये तिथियाँ मिथिला पंचांग 2027-28 में आएँगी।", bengal: "अभी प्रकाशित नहीं: ये तिथियाँ बांग्ला पंजिका 1434 (पोइला बोइशाख, मध्य अप्रैल 2027 से) में आएँगी।" },
+    bengaliDate: "बांग्ला तिथि",
+    extra: (n: number) => `पंजिका की अतिरिक्त कार्तिक तिथियाँ (${n}) – पुरोहित से पूछें`,
+    extraHint: "पंजिका इन्हें केवल अतिरिक्त तिथियों के रूप में देती है, अग्रहायण के मुख्य सीज़न से पहले। कई परिवार इन्हें नहीं लेते।",
     noneWhy: "कारण:",
     some: (n: number) => `सिर्फ़ एक पंचांग में दी गई तारीखें (${n}) – पक्की नहीं`,
     someHint: "ये तारीखें केवल एक स्रोत में हैं (या केवल द्रिक पंचांग और उसकी नकल करने वाली साइट में)। इन पर विचार करने से पहले पुरोहित से पूछें।",
@@ -182,9 +164,10 @@ const T = {
     share: "सूची शेयर करें",
     copied: "सूची कॉपी हो गई। व्हाट्सऐप या नोट में पेस्ट करें।",
     copyFail: "कॉपी नहीं हो पाया। फिर से कोशिश करें।",
-    listTitle: (d: string) => `विवाह मुहूर्त नवंबर 2026 – दिसंबर 2027 · ${d}`,
+    listTitle: (d: string) => `विवाह मुहूर्त 2026–2027 · ${d}`,
     listNone: "कोई मुहूर्त नहीं",
     listMhNone: "मराठी पंचांग की तारीखें अभी पक्की नहीं हैं।",
+    listNotYet: "अभी प्रकाशित नहीं",
     before: "तारीख तय करने से पहले:",
     kundli: "कुंडली मिलान (गुण मिलान) करें",
     biodata: "बायोडाटा बनाएँ",
@@ -197,11 +180,17 @@ const T = {
     tradition: "पंचांग परंपरा",
     north: "उत्तर भारत (हिंदी पंचांग)",
     maharashtra: "महाराष्ट्र (मराठी पंचांग)",
+    mithila: "मिथिला (मैथिली पंचांग)",
+    bengal: "बंगाल (बंगाली पंजिका)",
     note: "तारखा प्रकाशित पंचांगांवरून संकलित केल्या आहेत (स्रोत खाली दिले आहेत); मुहूर्ताची नेमकी वेळ आपल्या गुरुजींकडून नक्की करून घ्या.",
     noteMore: "दाखवलेली मुहूर्त वेळ द्रिक पंचांगानुसार नवी दिल्लीची आहे. तुमच्या शहरात वेळ वेगळी असू शकते, आणि गुरुजी वधू-वरांच्या पत्रिकाही पाहतील.",
+    noteMithila:
+      "तारखा मिथिला विद्यापीठ पंचांग 2026-27 (कामेश्वर सिंह दरभंगा संस्कृत विद्यापीठ) मधील आहेत. पंचांगात फक्त तारखा आहेत; लग्नाची वेळ गुरुजी ठरवतील.",
+    noteBengal:
+      "तारखा बेणीमाधव शील यांच्या फुल पंजिका 1433 (एप्रिल 2026 मध्य ते एप्रिल 2027 मध्य) मधील आहेत. गुप्त प्रेस आणि विशुद्ध सिद्धांत पंजिकांमध्ये एक-दोन दिवसांचा फरक असू शकतो. लग्नाची वेळ गुरुजी ठरवतील.",
     digits: "मराठी अंक (१२३)",
     months: "महिना निवडा",
-    total: (n: number) => `नोव्हेंबर 2026 – डिसेंबर 2027 मध्ये ${n} पक्क्या तारखा`,
+    total: (n: number, range: string) => `${range} मध्ये ${n} पक्क्या तारखा`,
     next: "पुढचा पक्का मुहूर्त",
     noneLeft: "यादीतील सर्व तारखा होऊन गेल्या. पुढच्या हंगामाची यादी पुन्हा पाहा.",
     past: "होऊन गेला",
@@ -212,6 +201,11 @@ const T = {
     nextDay: "दुसऱ्या दिवशी",
     early: (d: string) => `${d} ची पहाट`,
     none: "या महिन्यात लग्नाचा मुहूर्त नाही.",
+    noneHere: "या पंचांगात या महिन्यात लग्नाची तारीख नाही.",
+    notYet: { mithila: "अजून प्रसिद्ध नाही: या तारखा मिथिला पंचांग 2027-28 मध्ये येतील.", bengal: "अजून प्रसिद्ध नाही: या तारखा बंगाली पंजिका 1434 (पोइला बोइशाख, एप्रिल 2027 मध्यापासून) मध्ये येतील." },
+    bengaliDate: "बंगाली दिनांक",
+    extra: (n: number) => `पंजिकेतील अतिरिक्त कार्तिक तारखा (${n}) – गुरुजींना विचारा`,
+    extraHint: "पंजिका या तारखा फक्त अतिरिक्त म्हणून देते, अग्रहायणच्या मुख्य हंगामाआधी. अनेक कुटुंबे त्या घेत नाहीत.",
     noneWhy: "कारण:",
     some: (n: number) => `फक्त एकाच पंचांगात दिलेल्या तारखा (${n}) – पक्क्या नाहीत`,
     someHint: "या तारखा फक्त एका स्रोतात आहेत (किंवा फक्त द्रिक पंचांग आणि त्याची नक्कल करणाऱ्या साइटवर). त्यांचा विचार करण्याआधी गुरुजींना विचारा.",
@@ -233,9 +227,10 @@ const T = {
     share: "यादी शेअर करा",
     copied: "यादी कॉपी झाली. व्हॉट्सॲप किंवा नोटमध्ये पेस्ट करा.",
     copyFail: "कॉपी झाली नाही. पुन्हा प्रयत्न करा.",
-    listTitle: (d: string) => `लग्न मुहूर्त नोव्हेंबर 2026 – डिसेंबर 2027 · ${d}`,
+    listTitle: (d: string) => `लग्न मुहूर्त 2026–2027 · ${d}`,
     listNone: "मुहूर्त नाही",
     listMhNone: "मराठी पंचांगातील तारखा अजून पक्क्या नाहीत.",
+    listNotYet: "अजून प्रसिद्ध नाही",
     before: "तारीख ठरवण्याआधी:",
     kundli: "गुण मिलन करा",
     biodata: "बायोडाटा तयार करा",
@@ -296,6 +291,19 @@ const PERIOD_SHORT: Record<PeriodId, Record<Lang, string>> = {
   kharmas2027: { en: "Kharmas / Dhanurmas", hi: "खरमास", mr: "धनुर्मास / खरमास" },
 };
 
+const DATA: Record<DatasetId, { conf: MuhuratDate[]; some: SomeDate[] }> = {
+  north: { conf: NORTH_CONFIRMED, some: NORTH_SOME },
+  maharashtra: { conf: MAHARASHTRA_CONFIRMED, some: MAHARASHTRA_SOME },
+  mithila: { conf: MITHILA_CONFIRMED, some: [] },
+  bengal: { conf: BENGAL_CONFIRMED, some: BENGAL_SOME },
+};
+
+const ORDER: Record<Lang, DatasetId[]> = {
+  en: ["north", "maharashtra", "mithila", "bengal"],
+  hi: ["north", "mithila", "maharashtra", "bengal"],
+  mr: ["maharashtra", "north", "mithila", "bengal"],
+};
+
 /* ---------- helpers ---------- */
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -325,25 +333,6 @@ function monthKeys(): string[] {
   return out;
 }
 const MONTH_KEYS = monthKeys();
-
-const localName = (map: Record<string, { hi: string; mr: string }>, name: string, lang: Lang) =>
-  lang === "en" ? name : (map[name]?.[lang] ?? name);
-
-function fmtTime(hhmm: string, lang: Lang): string {
-  const [h, m] = hhmm.split(":").map(Number);
-  const h12 = h % 12 === 0 ? 12 : h % 12;
-  const clock = `${h12}:${pad(m)}`;
-  if (lang === "en") return `${clock} ${h < 12 ? "am" : "pm"}`;
-  const part =
-    h >= 4 && h < 12
-      ? { hi: "सुबह", mr: "सकाळी" }
-      : h >= 12 && h < 16
-        ? { hi: "दोपहर", mr: "दुपारी" }
-        : h >= 16 && h < 19
-          ? { hi: "शाम", mr: "सायंकाळी" }
-          : { hi: "रात", mr: "रात्री" };
-  return `${part[lang]} ${clock}`;
-}
 
 function inPeriods(iso: string): Period[] {
   return PERIODS.filter((p) => iso >= p.from && iso <= p.to);
@@ -387,10 +376,15 @@ export default function Muhurat({ lang }: { lang: Lang }) {
     if (fromNext && toNext) return num(`${s} – ${e} (${t.early(dayMonth(nextIso(iso)))})`);
     return num(`${s} – ${e}${toNext ? ` (${t.nextDay})` : ""}`);
   };
+  const bengaliLabel = ([m, d]: [BengaliMonth, number]) => num(`${d} ${BENGALI_MONTH[m][lang]} 1433`);
   const periodRange = (p: Period) => `${dayMonth(p.from)} ${num(p.from.slice(0, 4))} – ${dayMonth(p.to)} ${num(p.to.slice(0, 4))}`;
 
-  const confirmed: MuhuratDate[] = dataset === "north" ? NORTH_CONFIRMED : MAHARASHTRA_CONFIRMED;
-  const some: SomeDate[] = dataset === "north" ? NORTH_SOME : MAHARASHTRA_SOME;
+  const { conf: confirmed, some } = DATA[dataset];
+  // The North and Marathi lists follow the all-India no-wedding periods; the Mithila and Bengali
+  // panchangs set their own, so period notes and the Simhastha caution are not shown for them.
+  const withPeriods = dataset === "north" || dataset === "maharashtra";
+  const notCovered = (key: string) => key > COVERED_TO[dataset];
+  const regional = dataset === "mithila" || dataset === "bengal";
   const northSet = useMemo(() => new Set(NORTH_CONFIRMED.map((d) => d.date)), []);
 
   const byMonth = useMemo(() => {
@@ -419,9 +413,13 @@ export default function Muhurat({ lang }: { lang: Lang }) {
   const pageUrl = `${SITE.url}${topicPath("muhurat", lang) ?? "/"}`;
 
   function listText(): string {
-    const lines = [t.listTitle(dataset === "north" ? t.north : t.maharashtra), "", t.note, ""];
-    if (dataset === "north") {
+    const lines = [t.listTitle(t[dataset]), "", t.note, ""];
+    if (dataset !== "maharashtra") {
       for (const k of MONTH_KEYS) {
+        if (notCovered(k)) {
+          lines.push(`${monthLabel(k)}: ${t.listNotYet}`);
+          continue;
+        }
         const c = byMonth.get(k)!.conf;
         const days = c.map((d) => `${num(String(parts(d.date)[2]))} (${WEEKDAYS[lang][weekdayIndex(d.date)].slice(0, lang === "en" ? 3 : undefined)})`);
         lines.push(`${monthLabel(k)}: ${days.length ? days.join(", ") : t.listNone}`);
@@ -449,7 +447,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
     }
   }
 
-  const order: DatasetId[] = lang === "mr" ? ["maharashtra", "north"] : ["north", "maharashtra"];
+  const order = ORDER[lang];
   const kundliHref = topicPath("gunaMilan", lang);
   const createHref = topicPath("create", lang);
 
@@ -473,7 +471,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
                   dataset === id ? "border-maroon bg-maroon text-white" : "border-line bg-ivory/60 text-ink hover:border-gold"
                 }`}
               >
-                {id === "north" ? t.north : t.maharashtra}
+                {t[id]}
               </button>
             ))}
           </div>
@@ -481,7 +479,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
 
         <div className="mt-4 rounded-xl border border-gold/60 bg-sand/60 p-3 text-sm text-ink" role="note">
           <p className="font-semibold">{t.note}</p>
-          <p className="mt-1 text-soft">{t.noteMore}</p>
+          <p className="mt-1 text-soft">{dataset === "mithila" ? t.noteMithila : dataset === "bengal" ? t.noteBengal : t.noteMore}</p>
         </div>
 
         {lang !== "en" && (
@@ -494,9 +492,11 @@ export default function Muhurat({ lang }: { lang: Lang }) {
 
       {/* Summary */}
       <div className="rounded-2xl border border-line bg-paper p-4 sm:p-5" aria-live="polite">
-        {dataset === "north" ? (
+        {dataset !== "maharashtra" ? (
           <>
-            <p className="text-sm text-soft">{num(t.total(confirmed.length))}</p>
+            <p className="text-sm text-soft">
+              {num(t.total(confirmed.length, `${monthLabel(confirmed[0].date.slice(0, 7), true)} – ${monthLabel(confirmed[confirmed.length - 1].date.slice(0, 7), true)}`))}
+            </p>
             {today &&
               (nextDate ? (
                 <p className="mt-1 text-ink">
@@ -552,7 +552,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
                 >
                   {monthLabel(k, true)}
                   <span className={`ml-1.5 rounded-full px-1.5 text-xs ${count ? "bg-maroon text-white" : "bg-line text-soft"}`}>
-                    {dataset === "maharashtra" && !count ? "–" : num(String(count))}
+                    {(dataset === "maharashtra" && !count) || notCovered(k) ? "–" : num(String(count))}
                   </span>
                 </button>
               </li>
@@ -582,7 +582,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
                 >
                   <span className="font-display text-lg text-maroon">{monthLabel(k)}</span>
                   <span className="flex shrink-0 items-center gap-2 text-sm text-soft">
-                    {dataset === "north" ? num(String(m.conf.length)) : "–"}
+                    {dataset === "maharashtra" || notCovered(k) ? "–" : num(String(m.conf.length))}
                     <span aria-hidden className={`transition ${isOpen ? "rotate-180" : ""}`}>
                       ▾
                     </span>
@@ -592,6 +592,9 @@ export default function Muhurat({ lang }: { lang: Lang }) {
               {isOpen && (
                 <div id={panelId} className="border-t border-line px-4 pb-4 pt-3 sm:px-5">
                   {dataset === "maharashtra" && m.conf.length === 0 && <p className="text-sm font-semibold text-ink">{t.mhMonth}</p>}
+
+                  {regional && notCovered(k) && <p className="text-sm font-semibold text-ink">{t.notYet[dataset]}</p>}
+                  {regional && !notCovered(k) && m.conf.length === 0 && <p className="text-sm font-semibold text-ink">{t.noneHere}</p>}
 
                   {dataset === "north" && m.conf.length === 0 && (
                     <div className="text-sm text-ink">
@@ -604,7 +607,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
                     </div>
                   )}
 
-                  {m.conf.some((d) => inPeriods(d.date).some((p) => p.kind === "caution")) && (
+                  {withPeriods && m.conf.some((d) => inPeriods(d.date).some((p) => p.kind === "caution")) && (
                     <p className="mb-3 rounded-lg bg-gold/10 px-3 py-2 text-xs text-ink">
                       <span className="inline-flex items-center gap-1 font-semibold text-maroon">
                     <IconWarning className="size-3.5" /> {t.caution}:
@@ -618,7 +621,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
                         const isPast = today ? d.date < today : false;
                         const isToday = today === d.date;
                         const isNext = nextDate?.date === d.date;
-                        const caution = inPeriods(d.date).find((p) => p.kind === "caution");
+                        const caution = withPeriods && inPeriods(d.date).find((p) => p.kind === "caution");
                         return (
                           <li
                             key={d.date}
@@ -636,34 +639,48 @@ export default function Muhurat({ lang }: { lang: Lang }) {
                                 ) : null}
                               </span>
                             </div>
-                            <p className="mt-0.5 text-sm text-ink">
-                              {d.nakshatra.map((n) => localName(NAKSHATRA, n, lang)).join(", ")} · {d.tithi.map((x) => localName(TITHI, x, lang)).join(", ")}
-                            </p>
-                            <p className="mt-1 text-xs text-soft">
-                              {t.window}: {d.windows.map((w) => windowLabel(d.date, w)).join("; ")}
-                            </p>
+                            {d.nakshatra && d.tithi && (
+                              <p className="mt-0.5 text-sm text-ink">
+                                {d.nakshatra.map((n) => localName(NAKSHATRA, n, lang)).join(", ")} · {d.tithi.map((x) => localName(TITHI, x, lang)).join(", ")}
+                              </p>
+                            )}
+                            {d.bengali && (
+                              <p className="mt-0.5 text-sm text-ink">
+                                {t.bengaliDate}: {bengaliLabel(d.bengali)}
+                              </p>
+                            )}
+                            {d.windows && (
+                              <p className="mt-1 text-xs text-soft">
+                                {t.window}: {d.windows.map((w) => windowLabel(d.date, w)).join("; ")}
+                              </p>
+                            )}
                             {caution && (
                           <p className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-maroon">
                             <IconWarning className="size-3.5" /> {t.caution}
                           </p>
                         )}
-                            <p className="mt-1 text-xs text-soft">
-                              {t.agreed}: {d.sources.map((s) => SOURCE_SHORT[s]).join(", ")}
-                            </p>
+                            {d.sources && (
+                              <p className="mt-1 text-xs text-soft">
+                                {t.agreed}: {d.sources.map((s) => SOURCE_SHORT[s]).join(", ")}
+                              </p>
+                            )}
                           </li>
                         );
                       })}
                     </ul>
                   )}
 
-                  {m.some.length > 0 && dataset === "north" && (
+                  {m.some.length > 0 && (dataset === "north" || dataset === "bengal") && (
                     <details className="mt-3 rounded-xl border border-dashed border-line p-3">
-                      <summary className="cursor-pointer text-sm text-soft">{num(t.some(m.some.length))}</summary>
-                      <p className="mt-2 text-xs text-soft">{t.someHint}</p>
+                      <summary className="cursor-pointer text-sm text-soft">{num(dataset === "bengal" ? t.extra(m.some.length) : t.some(m.some.length))}</summary>
+                      <p className="mt-2 text-xs text-soft">{dataset === "bengal" ? t.extraHint : t.someHint}</p>
                       <ul className="mt-2 space-y-1 text-sm text-ink">
                         {m.some.map((d) => (
                           <li key={d.date}>
-                            {fullDate(d.date)} <span className="text-xs text-soft">({d.sources.map((s) => SOURCE_SHORT[s]).join(", ")})</span>
+                            {fullDate(d.date)}{" "}
+                            <span className="text-xs text-soft">
+                              ({d.bengali ? bengaliLabel(d.bengali) : d.sources?.map((s) => SOURCE_SHORT[s]).join(", ")})
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -697,7 +714,7 @@ export default function Muhurat({ lang }: { lang: Lang }) {
                     </div>
                   )}
 
-                  {monthPeriods.length > 0 && (m.conf.length > 0 || dataset === "maharashtra") && (
+                  {withPeriods && monthPeriods.length > 0 && (m.conf.length > 0 || dataset === "maharashtra") && (
                     <ul className="mt-3 space-y-1 text-xs text-soft">
                       {monthPeriods.map((p) => (
                         <li key={p.id}>

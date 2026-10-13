@@ -1,6 +1,6 @@
 import type { PageContent } from "../types";
 
-const updated = "2026-09-26";
+const updated = "2026-10-12";
 
 export const MUHURAT: PageContent[] = [
   {
@@ -22,7 +22,7 @@ What a list like this can do is save you time. Once you know which dates are gen
 
 ## How to use the tool
 
-1. Choose the panchang tradition. The North India list follows the Hindi panchangs. The Maharashtra list follows Marathi panchangs; right now its dates are marked "not yet confirmed" (see below).
+1. Choose the panchang tradition: North India (Hindi panchangs), Maharashtra (Marathi panchangs; its dates are still marked "not yet confirmed"), Mithila (Maithili panchang) or Bengal (Bengali panjika).
 2. Tap a month chip. The number on each chip is how many confirmed dates that month has.
 3. Open a month to see each date with its weekday, nakshatra, tithi and the muhurat window for New Delhi. Dates that have passed are greyed out and the next one is highlighted.
 4. Press **Copy list** to paste the whole list into a family WhatsApp group.
@@ -41,6 +41,15 @@ Dates that only one source gives are kept in a separate, folded "only one pancha
 | May 2027 | 17 dates, the busiest month |
 | Aug–Oct 2027 | none |
 
+## Mithila and Bengali dates
+
+Regional panchangs often give different dates from the all-India lists, so the tool keeps them separate.
+
+- **Mithila (Bihar, Maithili families)** – the 63 dates of the Mithila Vishwavidyalaya Panchang 2026-27, published by Kameshwar Singh Darbhanga Sanskrit University. The season runs from 22 November 2026 to 9 July 2027, with May 2027 the busiest month (14 dates). Dates from November 2027 will be in the 2027-28 panchang.
+- **Bengal** – the main wedding dates of Beni Madhab Sil's Full Panjika 1433, in Agrahayan, Magh and Falgun (21 November 2026 to 14 March 2027). Each date also shows the Bengali date, such as 4 Agrahayan. The panjika's extra Kartik dates are listed separately. Dates from mid-April 2027 will be in the 1434 panjika.
+
+We did not find Odia, Gujarati, Telugu or Tamil lists that agreed with each other, so those traditions are not in the tool yet.
+
 ## Periods with no muhurat
 
 - **Chaturmas** – from Devshayani Ekadashi to Devuthani (Prabodhini) Ekadashi. In 2026 it ends on Friday 20 November, so the season starts on 21 November. In 2027 it runs from 14 July to 10 November.
@@ -52,6 +61,13 @@ Dates that only one source gives are kept in a separate, folded "only one pancha
 ## Worked example
 
 A family in Delhi wants a December 2026 wedding. The tool shows 2–6, 11 and 12 December, then Kharmas from 16 December. They note that the 11 December muhurat is in the early hours of the 12th, so they shortlist 5 and 12 December and take both to their purohit.
+
+## Season guides
+
+- [Wedding dates in November and December 2026](/wedding-dates-november-december-2026/) – the short season between Devuthani Ekadashi and Kharmas
+- [Wedding dates in January, February and March 2027](/wedding-dates-january-february-march-2027/) – from Makar Sankranti to Holashtak
+- [Mithila panchang marriage dates 2026-27](/mithila-panchang-marriage-dates-2026-27/) – all 63 lagan dates
+- [Bengali marriage dates 2026-27](/bengali-marriage-dates-2026-27/) – Agrahayan, Magh and Falgun 1433
 
 ## Before the season
 
@@ -78,6 +94,14 @@ Families usually exchange biodata months before the wedding season. [Make your b
         q: "Is it all right to marry during Simhastha Guru?",
         a: "Traditions differ. The Muhurta Chintamani restricts it between the Ganga and the Godavari, while many panchangs still list dates. Follow your family purohit's advice.",
       },
+      {
+        q: "What are the Mithila panchang wedding dates for 2026-27?",
+        a: "The Mithila Vishwavidyalaya Panchang 2026-27 gives 63 dates from 22 November 2026 to 9 July 2027: 22, 25, 26 and 30 November and 4, 6, 9, 10, 11 and 14 December 2026 to start. Choose Mithila in the tool for the full list.",
+      },
+      {
+        q: "What are the Bengali marriage dates in Agrahayan 1433?",
+        a: "Beni Madhab Sil's panjika gives 21, 24, 25 and 26 November and 5, 9, 11, 12 and 13 December 2026 (4, 7, 8, 9, 18, 22, 24, 25 and 26 Agrahayan). Choose Bengal in the tool for the Magh and Falgun dates.",
+      },
     ],
     updated,
     tool: "muhurat",
@@ -88,7 +112,7 @@ Families usually exchange biodata months before the wedding season. [Make your b
     slug: "vivah-muhurat-2026-2027",
     title: "विवाह मुहूर्त 2026-2027 – नवंबर, दिसंबर 2026 की शादी की तारीखें (पूरी लिस्ट)",
     description:
-      "नवंबर 2026 से दिसंबर 2027 तक के विवाह मुहूर्त महीनेवार, नक्षत्र और तिथि के साथ। कई पंचांगों से मिलाकर, स्रोत और वर्जित काल सहित। समय पुरोहित से पक्का करें।",
+      "नवंबर 2026 से दिसंबर 2027 तक के विवाह मुहूर्त महीनेवार, नक्षत्र और तिथि के साथ। उत्तर भारत, मिथिला पंचांग और बांग्ला पंजिका की अलग सूचियाँ, स्रोत सहित।",
     h1: "विवाह मुहूर्त 2026-2027: शादी की शुभ तारीखें महीनेवार",
     lead: "नीचे दी गई हर तारीख द्रिक पंचांग में और कम से कम एक दूसरे स्वतंत्र पंचांग या प्रकाशित सूची में मिलती है। महीना चुनें, तारीखें देखें और मुहूर्त का सही समय अपने पुरोहित से पक्का करें।",
     sample: {},
@@ -101,7 +125,7 @@ Families usually exchange biodata months before the wedding season. [Make your b
 
 ## टूल कैसे इस्तेमाल करें
 
-1. पंचांग परंपरा चुनें। उत्तर भारत की सूची हिंदी पंचांगों पर आधारित है। महाराष्ट्र की सूची मराठी पंचांगों के लिए है; अभी उसकी तारीखें "पक्की नहीं" दिखती हैं।
+1. पंचांग परंपरा चुनें: उत्तर भारत (हिंदी पंचांग), मिथिला (मैथिली पंचांग), महाराष्ट्र (मराठी पंचांग; इसकी तारीखें अभी "पक्की नहीं" दिखती हैं) या बंगाल (बांग्ला पंजिका)।
 2. किसी महीने के बटन पर टैप करें। बटन पर लिखी संख्या उस महीने की पक्की तारीखों की गिनती है।
 3. महीना खोलकर हर तारीख का वार, नक्षत्र, तिथि और नई दिल्ली का मुहूर्त समय देखें। बीती तारीखें हल्की दिखती हैं और अगला मुहूर्त अलग से चमकता है।
 4. **सूची कॉपी करें** दबाकर पूरी सूची परिवार के व्हाट्सऐप ग्रुप में भेजें।
@@ -120,6 +144,15 @@ Families usually exchange biodata months before the wedding season. [Make your b
 | मई 2027 | 17 तारीखें, सबसे व्यस्त महीना |
 | अगस्त–अक्टूबर 2027 | कोई नहीं |
 
+## मिथिला पंचांग और बांग्ला पंजिका की तिथियाँ
+
+क्षेत्रीय पंचांगों की तिथियाँ अक्सर अखिल भारतीय सूचियों से अलग होती हैं, इसलिए टूल में इन्हें अलग रखा गया है।
+
+- **मिथिला पंचांग** – कामेश्वर सिंह दरभंगा संस्कृत विश्वविद्यालय के विश्वविद्यालय पंचांग 2026-27 की सभी 63 विवाह तिथियाँ। लगन 22 नवंबर 2026 से 9 जुलाई 2027 तक है और मई 2027 में सबसे ज़्यादा (14) तिथियाँ हैं। नवंबर 2027 के बाद की तिथियाँ 2027-28 के पंचांग में आएँगी।
+- **बांग्ला पंजिका** – बेणीमाधव शील की फुल पंजिका 1433 की मुख्य विवाह तिथियाँ, अग्रहायण, माघ और फाल्गुन में (21 नवंबर 2026 से 14 मार्च 2027)। हर तारीख के साथ बांग्ला तिथि भी दिखती है, जैसे 4 अग्रहायण। पंजिका की अतिरिक्त कार्तिक तिथियाँ अलग दिखाई गई हैं।
+
+ओड़िया, गुजराती, तेलुगु और तमिल पंचांगों की ऐसी सूचियाँ नहीं मिलीं जो आपस में मेल खाएँ, इसलिए ये परंपराएँ अभी टूल में नहीं हैं।
+
 ## कब नहीं होते विवाह मुहूर्त
 
 - **चातुर्मास** – देवशयनी एकादशी से देवउठनी (प्रबोधिनी) एकादशी तक। 2026 में यह शुक्रवार 20 नवंबर को खत्म होता है, इसलिए शादियाँ 21 नवंबर से शुरू होती हैं। 2027 में यह 14 जुलाई से 10 नवंबर तक है।
@@ -131,6 +164,12 @@ Families usually exchange biodata months before the wedding season. [Make your b
 ## एक उदाहरण
 
 लखनऊ का एक परिवार दिसंबर 2026 में शादी चाहता है। टूल 2–6, 11 और 12 दिसंबर दिखाता है और बताता है कि 16 दिसंबर से खरमास है। 11 दिसंबर का मुहूर्त असल में 12 की भोर में है, यह देखकर वे 5 और 12 दिसंबर चुनते हैं और दोनों तारीखें पुरोहित को दिखाते हैं।
+
+## सीज़न के हिसाब से लेख
+
+- [नवंबर-दिसंबर 2026 में शादी के शुभ मुहूर्त](/hindi/shadi-muhurat-november-december-2026/) – देवउठनी एकादशी से खरमास तक का छोटा सीज़न
+- [जनवरी, फरवरी और मार्च 2027 में शादी के मुहूर्त](/hindi/shadi-muhurat-january-february-march-2027/) – मकर संक्रांति से होलाष्टक तक
+- [मिथिला पंचांग विवाह मुहूर्त 2026-27](/hindi/mithila-panchang-vivah-muhurat-2026-27/) – लगन की सभी 63 तिथियाँ
 
 ## सीज़न से पहले की तैयारी
 
@@ -156,6 +195,14 @@ Families usually exchange biodata months before the wedding season. [Make your b
       {
         q: "क्या सिंहस्थ गुरु में शादी कर सकते हैं?",
         a: "इस पर परंपराएँ अलग हैं। मुहूर्त चिंतामणि गंगा-गोदावरी के बीच इसे वर्जित मानता है, जबकि कई पंचांग तारीखें देते हैं। अपने कुल पुरोहित की सलाह मानें।",
+      },
+      {
+        q: "मिथिला पंचांग 2026-27 में विवाह की तिथियाँ कौन-सी हैं?",
+        a: "मिथिला विश्वविद्यालय पंचांग 2026-27 में 22 नवंबर 2026 से 9 जुलाई 2027 तक 63 तिथियाँ हैं। शुरुआत 22, 25, 26, 30 नवंबर और 4, 6, 9, 10, 11, 14 दिसंबर 2026 से होती है। पूरी सूची के लिए टूल में मिथिला चुनें।",
+      },
+      {
+        q: "बांग्ला पंजिका 1433 में अग्रहायण की विवाह तिथियाँ कौन-सी हैं?",
+        a: "बेणीमाधव शील की पंजिका में 21, 24, 25, 26 नवंबर और 5, 9, 11, 12, 13 दिसंबर 2026 (4, 7, 8, 9, 18, 22, 24, 25, 26 अग्रहायण) हैं। माघ और फाल्गुन की तिथियों के लिए टूल में बंगाल चुनें।",
       },
     ],
     updated,
@@ -186,7 +233,7 @@ Families usually exchange biodata months before the wedding season. [Make your b
 
 ## टूल कसे वापरायचे
 
-1. पंचांग परंपरा निवडा: महाराष्ट्र (मराठी पंचांग) किंवा उत्तर भारत (हिंदी पंचांग).
+1. पंचांग परंपरा निवडा: महाराष्ट्र (मराठी पंचांग), उत्तर भारत (हिंदी पंचांग), मिथिला (मैथिली पंचांग) किंवा बंगाल (बंगाली पंजिका).
 2. महिन्याच्या बटणावर टॅप करा. बटणावरचा आकडा त्या महिन्यातील पक्क्या तारखांची संख्या आहे.
 3. महिना उघडून प्रत्येक तारखेचा वार, नक्षत्र, तिथी आणि नवी दिल्लीची मुहूर्त वेळ पाहा. होऊन गेलेल्या तारखा फिक्या दिसतात आणि पुढचा मुहूर्त उठून दिसतो.
 4. **यादी कॉपी करा** दाबून संपूर्ण यादी घरच्या व्हॉट्सॲप ग्रुपवर पाठवा.
@@ -212,6 +259,11 @@ Families usually exchange biodata months before the wedding season. [Make your b
 ## एक उदाहरण
 
 पुण्यातील एका कुटुंबाला डिसेंबर 2026 मध्ये लग्न करायचे आहे. टूलमध्ये महाराष्ट्र यादी निवडल्यावर दिसते की मराठी पंचांगातील तारखा अजून पक्क्या नाहीत, पण पुढारीच्या यादीतील 2, 3, 4, 5 आणि 12 डिसेंबर या तारखा उत्तर भारताच्या यादीतही आहेत. 16 डिसेंबरपासून धनुर्मास सुरू होतो हेही दिसते. हे कुटुंब 5 आणि 12 डिसेंबर हे दोन पर्याय घेऊन गुरुजींकडे जाते आणि त्यांच्या पंचांगानुसार अंतिम तारीख व वेळ ठरवते.
+
+## हंगामानुसार लेख
+
+- [नोव्हेंबर-डिसेंबर 2026 मधील लग्न मुहूर्त](/marathi/lagna-muhurat-november-december-2026/) – तुळशी विवाह ते धनुर्मास
+- [जानेवारी, फेब्रुवारी आणि मार्च 2027 मधील लग्न मुहूर्त](/marathi/lagna-muhurat-january-february-march-2027/) – मकर संक्रांती ते होळाष्टक
 
 ## सीझनआधीची तयारी
 

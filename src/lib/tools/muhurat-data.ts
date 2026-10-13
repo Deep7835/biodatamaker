@@ -19,9 +19,27 @@
  *   is shown as "not yet confirmed" and the single list is shown separately, with its own caveat.
  *   Update MAHARASHTRA_CONFIRMED when Date / Kalnirnay / Mahalaxmi-based lists are published
  *   (usually around Diwali – Tulsi Vivah).
+ *
+ * MITHILA (Maithili panchang) – research date 2026-10-12
+ *   Dates are the Mithila Vishwavidyalaya Panchang 2026-27 (Kameshwar Singh Darbhanga Sanskrit University).
+ *   The 2026-27 university and Vidyapati panchangs were released together with uniform lagna dates.
+ *   Amar Ujala (30 Jun 2026), ETV Bharat (19 Apr 2026) and the Mithila Dharohar blog all publish the
+ *   same 63 dates (22 Nov 2026 – 9 Jul 2027), so every date is confirmed by two independent reports
+ *   of the one named panchang. The panchang gives dates only (no nakshatra or time).
+ *   Nov–Dec 2027 dates will be in the 2027-28 panchang (usually released in April).
+ *
+ * BENGAL (Bengali panjika) – research date 2026-10-12
+ *   Dates are Beni Madhab Sil's Full Panjika 1433 (mid-April 2026 – mid-April 2027), as listed on
+ *   benimadhabsilpanjika.com (Bengali dates) and by Pradhan Banquet (with Gregorian dates); the two agree.
+ *   Every Bengali → Gregorian conversion was re-checked against Prokerala's Bengali calendar 1433.
+ *   The panjika's "additional" Kartik dates are kept in BENGAL_SOME. The 1434 panjika (from Poila
+ *   Boishakh, mid-April 2027) is not out yet. Gupta Press / Bisuddha Siddhanta can differ by a day or two.
+ *
+ * Not added (as of 2026-10-12): Odia, Gujarati, Telugu, Tamil. The lists found either disagreed
+ * with each other or simply repeated the North India list, so none met the two-source rule.
  */
 
-export type DatasetId = "north" | "maharashtra";
+export type DatasetId = "north" | "maharashtra" | "mithila" | "bengal";
 
 export type SourceId =
   | "drik"
@@ -43,18 +61,24 @@ export type SourceId =
 /** [start "HH:MM" 24h, end "HH:MM" 24h, start is on the next civil date (1/0), end is on the next civil date (1/0)] */
 export type MuhuratWindow = [string, string, 0 | 1, 0 | 1];
 
+export type BengaliMonth = "Kartik" | "Agrahayan" | "Magh" | "Falgun";
+
 export type MuhuratDate = {
   /** ISO date of the Hindu day (sunrise to next sunrise), as panchangs list it. */
   date: string;
   weekday: "Sun" | "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
-  nakshatra: string[];
-  tithi: string[];
+  /** Regional panchangs that publish dates only leave these out. */
+  nakshatra?: string[];
+  tithi?: string[];
   /** Drik Panchang windows for New Delhi; other cities differ by minutes to hours. */
-  windows: MuhuratWindow[];
-  sources: SourceId[];
+  windows?: MuhuratWindow[];
+  /** Bengali solar date (year 1433) as the panjika prints it. */
+  bengali?: [BengaliMonth, number];
+  /** Left out for the regional lists, whose sources are not shown on the page. */
+  sources?: SourceId[];
 };
 
-export type SomeDate = { date: string; weekday: MuhuratDate["weekday"]; sources: SourceId[] };
+export type SomeDate = { date: string; weekday: MuhuratDate["weekday"]; bengali?: [BengaliMonth, number]; sources?: SourceId[] };
 
 export const RANGE = { from: "2026-11", to: "2027-12" } as const;
 
@@ -214,6 +238,116 @@ export const MAHARASHTRA_SOME: SomeDate[] = [
   { date: "2026-12-31", weekday: "Thu", sources: ["pudhari"] },
 ];
 
+/** Mithila Vishwavidyalaya Panchang 2026-27: all 63 vivah dates (dates only, no times). */
+export const MITHILA_CONFIRMED: MuhuratDate[] = [
+  { date: "2026-11-22", weekday: "Sun" },
+  { date: "2026-11-25", weekday: "Wed" },
+  { date: "2026-11-26", weekday: "Thu" },
+  { date: "2026-11-30", weekday: "Mon" },
+  { date: "2026-12-04", weekday: "Fri" },
+  { date: "2026-12-06", weekday: "Sun" },
+  { date: "2026-12-09", weekday: "Wed" },
+  { date: "2026-12-10", weekday: "Thu" },
+  { date: "2026-12-11", weekday: "Fri" },
+  { date: "2026-12-14", weekday: "Mon" },
+  { date: "2027-01-18", weekday: "Mon" },
+  { date: "2027-01-24", weekday: "Sun" },
+  { date: "2027-01-28", weekday: "Thu" },
+  { date: "2027-01-29", weekday: "Fri" },
+  { date: "2027-01-31", weekday: "Sun" },
+  { date: "2027-02-07", weekday: "Sun" },
+  { date: "2027-02-10", weekday: "Wed" },
+  { date: "2027-02-11", weekday: "Thu" },
+  { date: "2027-02-15", weekday: "Mon" },
+  { date: "2027-02-21", weekday: "Sun" },
+  { date: "2027-02-22", weekday: "Mon" },
+  { date: "2027-02-24", weekday: "Wed" },
+  { date: "2027-02-25", weekday: "Thu" },
+  { date: "2027-02-28", weekday: "Sun" },
+  { date: "2027-03-01", weekday: "Mon" },
+  { date: "2027-03-03", weekday: "Wed" },
+  { date: "2027-03-04", weekday: "Thu" },
+  { date: "2027-03-10", weekday: "Wed" },
+  { date: "2027-03-11", weekday: "Thu" },
+  { date: "2027-04-10", weekday: "Sat" },
+  { date: "2027-04-21", weekday: "Wed" },
+  { date: "2027-04-23", weekday: "Fri" },
+  { date: "2027-04-25", weekday: "Sun" },
+  { date: "2027-04-28", weekday: "Wed" },
+  { date: "2027-04-29", weekday: "Thu" },
+  { date: "2027-05-02", weekday: "Sun" },
+  { date: "2027-05-03", weekday: "Mon" },
+  { date: "2027-05-07", weekday: "Fri" },
+  { date: "2027-05-09", weekday: "Sun" },
+  { date: "2027-05-13", weekday: "Thu" },
+  { date: "2027-05-17", weekday: "Mon" },
+  { date: "2027-05-20", weekday: "Thu" },
+  { date: "2027-05-21", weekday: "Fri" },
+  { date: "2027-05-23", weekday: "Sun" },
+  { date: "2027-05-24", weekday: "Mon" },
+  { date: "2027-05-26", weekday: "Wed" },
+  { date: "2027-05-27", weekday: "Thu" },
+  { date: "2027-05-30", weekday: "Sun" },
+  { date: "2027-05-31", weekday: "Mon" },
+  { date: "2027-06-02", weekday: "Wed" },
+  { date: "2027-06-04", weekday: "Fri" },
+  { date: "2027-06-09", weekday: "Wed" },
+  { date: "2027-06-10", weekday: "Thu" },
+  { date: "2027-06-13", weekday: "Sun" },
+  { date: "2027-06-14", weekday: "Mon" },
+  { date: "2027-06-18", weekday: "Fri" },
+  { date: "2027-06-23", weekday: "Wed" },
+  { date: "2027-06-24", weekday: "Thu" },
+  { date: "2027-07-01", weekday: "Thu" },
+  { date: "2027-07-02", weekday: "Fri" },
+  { date: "2027-07-07", weekday: "Wed" },
+  { date: "2027-07-08", weekday: "Thu" },
+  { date: "2027-07-09", weekday: "Fri" },
+];
+
+/** Beni Madhab Sil's Full Panjika 1433: main vivah dates, Agrahayan – Falgun (Nov 2026 – Mar 2027). */
+export const BENGAL_CONFIRMED: MuhuratDate[] = [
+  { date: "2026-11-21", weekday: "Sat", bengali: ["Agrahayan", 4] },
+  { date: "2026-11-24", weekday: "Tue", bengali: ["Agrahayan", 7] },
+  { date: "2026-11-25", weekday: "Wed", bengali: ["Agrahayan", 8] },
+  { date: "2026-11-26", weekday: "Thu", bengali: ["Agrahayan", 9] },
+  { date: "2026-12-05", weekday: "Sat", bengali: ["Agrahayan", 18] },
+  { date: "2026-12-09", weekday: "Wed", bengali: ["Agrahayan", 22] },
+  { date: "2026-12-11", weekday: "Fri", bengali: ["Agrahayan", 24] },
+  { date: "2026-12-12", weekday: "Sat", bengali: ["Agrahayan", 25] },
+  { date: "2026-12-13", weekday: "Sun", bengali: ["Agrahayan", 26] },
+  { date: "2027-01-18", weekday: "Mon", bengali: ["Magh", 3] },
+  { date: "2027-01-26", weekday: "Tue", bengali: ["Magh", 11] },
+  { date: "2027-01-28", weekday: "Thu", bengali: ["Magh", 13] },
+  { date: "2027-01-29", weekday: "Fri", bengali: ["Magh", 14] },
+  { date: "2027-02-11", weekday: "Thu", bengali: ["Magh", 27] },
+  { date: "2027-02-12", weekday: "Fri", bengali: ["Magh", 28] },
+  { date: "2027-02-16", weekday: "Tue", bengali: ["Falgun", 3] },
+  { date: "2027-02-22", weekday: "Mon", bengali: ["Falgun", 9] },
+  { date: "2027-02-24", weekday: "Wed", bengali: ["Falgun", 11] },
+  { date: "2027-03-01", weekday: "Mon", bengali: ["Falgun", 16] },
+  { date: "2027-03-09", weekday: "Tue", bengali: ["Falgun", 24] },
+  { date: "2027-03-14", weekday: "Sun", bengali: ["Falgun", 29] },
+];
+
+/** The panjika's "additional" (atirikta) Kartik dates inside the range. */
+export const BENGAL_SOME: SomeDate[] = [
+  { date: "2026-11-07", weekday: "Sat", bengali: ["Kartik", 20] },
+  { date: "2026-11-14", weekday: "Sat", bengali: ["Kartik", 27] },
+];
+
+/**
+ * Last month each list covers. Later months belong to a panchang that is not published yet.
+ * Mithila: the 2026-27 panchang's last date is 9 Jul 2027 and Chaturmas follows, so it speaks for months
+ * up to October; November 2027 onwards is in the 2027-28 panchang. Bengal: 1433 ends mid-April 2027.
+ */
+export const COVERED_TO: Record<DatasetId, string> = {
+  north: RANGE.to,
+  maharashtra: RANGE.to,
+  mithila: "2027-10",
+  bengal: "2027-03",
+};
+
 export type PeriodId =
   | "chaturmas2026"
   | "shukraAst2026"
@@ -266,7 +400,7 @@ export type Source = {
   urls: string[];
   /** What the source contributes, shown in the source list. */
   note: Record<"en" | "hi" | "mr", string>;
-  dataset: DatasetId | "both";
+  dataset: DatasetId | "all";
 };
 
 export const ACCESSED = "2026-09-26";
@@ -405,7 +539,7 @@ export const SOURCES: Source[] = [
       hi: "शुक्र अस्त की तारीखें।",
       mr: "शुक्र अस्ताच्या तारखा.",
     },
-    dataset: "both",
+    dataset: "all",
   },
   {
     id: "amarujalaGochar",
@@ -416,7 +550,7 @@ export const SOURCES: Source[] = [
       hi: "गुरु 31 अक्टूबर 2026 को सिंह राशि में; 25 जनवरी 2027 से 26 जून 2027 तक फिर कर्क में।",
       mr: "गुरू 31 ऑक्टोबर 2026 रोजी सिंह राशीत; 25 जानेवारी 2027 ते 26 जून 2027 पुन्हा कर्क राशीत.",
     },
-    dataset: "both",
+    dataset: "all",
   },
   {
     id: "amarujalaRule",
@@ -427,7 +561,7 @@ export const SOURCES: Source[] = [
       hi: "मुहूर्त चिंतामणि के अनुसार सिंहस्थ गुरु में गंगा-गोदावरी के बीच विवाह वर्जित; कई लोग इसे क्षेत्रीय नियम मानते हैं।",
       mr: "मुहूर्त चिंतामणीनुसार सिंहस्थ गुरूमध्ये गंगा-गोदावरीच्या मध्ये विवाह वर्ज्य; अनेक जण हा प्रादेशिक नियम मानतात.",
     },
-    dataset: "both",
+    dataset: "all",
   },
   {
     id: "holika",
@@ -438,6 +572,6 @@ export const SOURCES: Source[] = [
       hi: "होलिका दहन रविवार, 21 मार्च 2027; होलाष्टक उससे पहले के आठ दिन।",
       mr: "होलिका दहन रविवार, 21 मार्च 2027; होळाष्टक त्याआधीचे आठ दिवस.",
     },
-    dataset: "both",
+    dataset: "all",
   },
 ];

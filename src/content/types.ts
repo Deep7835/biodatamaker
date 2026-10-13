@@ -21,6 +21,10 @@ export type Topic =
   | "expectations"
   | "horoscopeGuide"
   | "familyDetails"
+  | "weddingDatesNovDec2026"
+  | "weddingDatesJanMar2027"
+  | "mithilaMuhurat"
+  | "bengaliMuhurat"
   | "tools"
   | ToolId
   | "templates"
