@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { relatedPages, type PageContent } from "@/content";
+import { ANALYTICS } from "@/lib/analytics";
 import { DICTS } from "@/lib/dict";
 import { href, HREFLANG, SITE } from "@/lib/i18n";
 import { getTemplate, heroImage, templateImage } from "@/lib/templates";
@@ -45,6 +46,11 @@ export function LandingPage({ page }: { page: PageContent }) {
 
   return (
     <main id="main" className="flex-1">
+      {/* AdSense (Auto ads) only on article pages: never in the editor, templates or interactive tools, where ads would
+          sit next to download / copy buttons. React hoists this async script into <head> and loads it once. */}
+      {ANALYTICS.adsenseClient && !page.tool && page.topic !== "tools" && (
+        <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ANALYTICS.adsenseClient}`} crossOrigin="anonymous" />
+      )}
       <JsonLd
         data={[
           {

@@ -39,6 +39,7 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
     <html lang={HREFLANG[lang]} className={`${fontVars} h-full`} suppressHydrationWarning>
       {/* eslint-disable-next-line @next/next/no-head-element -- App Router root layout; this rule targets the Pages Router */}
       <head>
+        {ANALYTICS.adsenseClient && <meta name="google-adsense-account" content={ANALYTICS.adsenseClient} />}
         {/* Apply the saved / system theme before first paint (no flash). */}
         <script
           dangerouslySetInnerHTML={{

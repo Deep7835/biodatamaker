@@ -14,6 +14,7 @@ import { PREMIUM_PRICE } from "@/lib/premium-price";
 export type LegalDoc = { slug: string; title: string; description: string; body: string };
 
 const updated = "26 September 2026";
+const privacyUpdated = "15 October 2026";
 
 export const LEGAL: LegalDoc[] = [
   {
@@ -51,9 +52,9 @@ Questions: [${SITE.contactEmail}](mailto:${SITE.contactEmail}).
   {
     slug: "privacy",
     title: "Privacy Policy",
-    description: `How ${SITE.name} handles your data: your biodata stays in your browser, no login, payments by Razorpay.`,
+    description: `How ${SITE.name} handles your data: your biodata stays in your browser, no login, payments by Razorpay, ads by Google AdSense.`,
     body: `
-Last updated: ${updated}
+Last updated: ${privacyUpdated}
 
 ## What we don't collect
 - **Your biodata details and photos never leave your device.** They are saved in your browser's local storage so you can come back and edit. Clearing your browser data deletes them.
@@ -63,6 +64,14 @@ Last updated: ${updated}
 - **Payments:** if you buy premium, Razorpay processes the payment and may collect your name, phone, email and payment details under [Razorpay's privacy policy](https://razorpay.com/privacy/). We receive only the order and payment IDs and the payment status.
 - **Typing in Hindi/Marathi:** if you turn on "Type in English → Devanagari", the word you type is sent to Google Input Tools to get the Devanagari spelling.
 - **Analytics:** ${ANALYTICS_LINE}
+
+## Advertising
+- Our article pages (biodata formats, guides and wedding-date articles) show ads from **Google AdSense**. There are no ads in the biodata maker or in our tools.
+- Third-party vendors, including Google, use cookies to serve ads based on your previous visits to this website and other websites.
+- Google's use of advertising cookies enables it and its partners to serve ads to you based on your visits to this site and/or other sites on the Internet. Learn more in [how Google uses information from sites that use its services](https://policies.google.com/technologies/partner-sites).
+- You can opt out of personalised advertising in [Google's Ads Settings](https://adssettings.google.com/), or opt out of some third-party vendors' cookies at [www.aboutads.info](https://www.aboutads.info/choices/).
+- Visitors in the EEA, the UK and Switzerland are asked for consent before personalised ads are shown.
+- Ads never receive your biodata details or photos; those stay in your browser.
 
 ## Your choices
 You can use every free feature without sharing any personal data with us. To delete your saved biodata, use "Start fresh" in the editor or clear your browser data.

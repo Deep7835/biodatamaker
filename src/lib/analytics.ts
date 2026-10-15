@@ -10,6 +10,8 @@ export const ANALYTICS = {
   gaId: process.env.NEXT_PUBLIC_GA_ID || "G-YEKN1NH16E",
   /** Microsoft Clarity project ID (heatmaps + session recordings; biodata content is masked). */
   clarityId: process.env.NEXT_PUBLIC_CLARITY_ID ?? "",
+  /** Google AdSense publisher ID (public; also in public/ads.txt). Ads load only on article pages, never in the editor or tools. */
+  adsenseClient: process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-1357544406485300",
   /** Google Search Console HTML-tag verification token. */
   // Public by design (it's printed in the page <head>), so it lives in code and every build/deploy includes it.
   googleVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "_yA_7dYFVtOmA8E2NOD_TRbuhWczpcHqmwoQmQPYPqs",
